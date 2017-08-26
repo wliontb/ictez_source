@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ICTez Foundation</title>
-    <link rel="stylesheet" href="<?=base_url()?>public/css/foundation.css" />
+    <title><?=(isset($title) ? $title : 'ICTEZ-BLOG CNTT')?></title>
+    <link rel="stylesheet" href="<?=base_url('public/css/foundation.css')?>" />
     <!-- Customies CSS -->
-    <link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/app.css')?>" />
     <!-- Icon Font Style -->
-    <link rel="stylesheet" type="text/css" href="<?=base_url()?>public/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/font-awesome.min.css')?>" />
 </head>
 
 <body>
@@ -19,15 +19,16 @@
         <!-- Menu -->
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text primary padding-right-1">ICTez</li>
+                <li class="padding-right-1"><a href="<?=base_url('index.php')?>" class="menu-text primary">ICTez</a></li>
+                <li class="padding-right-1"><a href="#">Chuyên mục</a> </li>
                 <li class="padding-right-1"> <a href="#">Thành viên</a>
                     <ul class="menu vertical">
-                        <li><a href="#">Đăng nhập</a> </li>
-                        <li><a href="#">Đăng ký</a> </li>
+                        <li><a href="<?=base_url('dangnhap')?>">Đăng nhập</a> </li>
+                        <li><a href="<?=base_url('dangky')?>">Đăng ký</a> </li>
                     </ul>
                 </li>
-                <li class="padding-right-1"><a href="#">Chuyên mục</a> </li>
-                <li class="padding-right-1"><a href="#">Thống kê</a> </li>
+                <li class="padding-right-1"><a href="#">Giới thiệu</a> </li>
+                <li class="padding-right-1"><a href="#">Liên hệ</a> </li>
             </ul>
         </div>
         <!-- End Menu -->
