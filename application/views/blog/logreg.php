@@ -19,12 +19,13 @@
 
     <div class="tabs-content" data-tabs-content="example-tabs">
         <?=validation_errors()?>
+        <?=$this->session->flashdata('loi')?>
         <div class="tabs-panel <?=(($active=='login') ? 'is-active' : '') ?>" id="log">
             <fieldset class="fieldset">
                 <legend><b>Đăng nhập</b></legend>
                 <form method="post" action="<?=base_url('dangnhap')?>">
-                    <label>Email</label>
-                    <input type="text" name="emaillog" value="<?=set_value('emaillog')?>">
+                    <label>Email hoặc Tên đăng nhập</label>
+                    <input type="text" name="namelog" value="<?=set_value('namelog')?>">
                     <label>Mật khẩu</label>
                     <input type="password" name="passwordlog" value="<?=set_value('passwordlog')?>">
                     <input type="submit" name="submitlog" class="success button" value="Đăng nhập">

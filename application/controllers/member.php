@@ -7,7 +7,7 @@ class Member extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
-		$this->load->model('User_Model');
+		$this->load->model('UserModel');
 	}
 
 	public function checkUsername()
@@ -16,7 +16,7 @@ class Member extends CI_Controller
 				'username' => $this->input->post('usernamereg'),
 			);
 
-		if ($this->User_Model->checkUser($where)) {
+		if ($this->UserModel->checkUser($where)) {
 			$this->form_validation->set_message(__FUNCTION__, '{field} đã sử dụng');
 			return false;
 		} else {
@@ -30,7 +30,7 @@ class Member extends CI_Controller
 				'email' => $this->input->post('emailreg'),
 			);
 
-		if ($this->User_Model->checkUser($where)) {
+		if ($this->UserModel->checkUser($where)) {
 			$this->form_validation->set_message(__FUNCTION__, '{field} đã sử dụng');
 			return false;
 		} else {
@@ -54,11 +54,28 @@ class Member extends CI_Controller
 				'active' => 'login',
 			);
 
-		$this->form_validation->set_rules('usernamelog', 'Tên đăng nhập', 'required|min_length[5]');
+		$this->form_validation->set_rules('namelog', 'Tài khoản hoặc địa chỉ email', 'required|min_length[5]');
 		$this->form_validation->set_rules('passwordlog', 'Mật khẩu', 'required|min_length[5]');
 
 		if ($this->form_validation->run() === true) {
-			var_dump($this->input->post());
+			$datalogin = array(
+					'Password' => $this->input->post('passwordlog'),
+				);
+
+			if (strpos($this->input->post('namelog'), '@') === false) {
+				$datalogin['Username'] = $this->input->post('namelog');
+			} else {
+				$datalogin['Email'] = $this->input->post('namelog');
+			}
+
+			if ($this->UserModel->checkUser($datalogin) === true) {
+				$this->session->set_userdata($this->UserModel->getUser($datalogin));
+
+				redirect();
+			} else {
+				$this->session->set_flashdata('loi', 'Lỗi đăng nhập');
+				$this->load->view('main/container', $this->_data);
+			}
 		} else {
 			$this->load->view('main/container', $this->_data);
 		}
@@ -80,9 +97,37 @@ class Member extends CI_Controller
 		$this->form_validation->set_rules('fullnamereg', 'Họ và tên', 'required|max_length[50]');
 
 		if ($this->form_validation->run() === true) {
-			var_dump($this->input->post());
+			$data = array(
+					'Username' => $this->input->post('usernamereg'),
+					'Email' => $this->input->post('emailreg'),
+					'Password' => $this->input->post('passwordreg'),
+					'Fullname' => $this->input->post('fullnamereg'),
+					'Avatar' => 'i.imgur.com/vCtRn7B.png',
+					'Intro' => 'Updating',
+					'Corn' => 100,
+					'Countpost' => 0,
+					'Date_create' => time(),
+					'Date_modify' => time(),
+				);
+
+			$this->UserModel->initUser($data);
+
+			$this->session->set_userdata($this->UserModel->getUser(array('Username'=>$this->input->post('usernamereg'))));
+
+			redirect();
 		} else {
 			$this->load->view('main/container', $this->_data);
+		}
+	}
+
+	public function logout()
+	{
+		if (!is_null($this->input->post('confirm')))
+		{
+			$this->session->sess_destroy();
+			redirect();
+		} else {
+			redirect();
 		}
 	}
 }

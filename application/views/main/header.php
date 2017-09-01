@@ -20,13 +20,29 @@
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu>
                 <li class="padding-right-1"><a href="<?=base_url('index.php')?>" class="menu-text primary">ICTez</a></li>
+                <?php 
+                if (!is_null($this->session->userdata('Username'))) {
+                    echo '
+                    <li class="padding-right-1"> <a href="'.base_url('profile').'">'.$this->session->userdata('Username').'</a>
+                        <ul class="menu vertical">
+                            <li><a href="'.base_url('1-baivietmoi').'">Bài viết mới</a> </li>
+                            <li><a href="'.base_url('admin').'">Quản lý</a> </li>
+                            <li><a href="'.base_url('dangxuat').'" style="border-top:1px solid #e6e6e6">Đăng xuất</a> </li>
+                        </ul>
+                    </li>
+                    ';
+                } else {
+                    echo '
+                    <li class="padding-right-1"> <a href="#">Thành viên</a>
+                        <ul class="menu vertical">
+                            <li><a href="'.base_url('dangnhap').'">Đăng nhập</a> </li>
+                            <li><a href="'.base_url('dangky').'">Đăng ký</a> </li>
+                        </ul>
+                    </li>
+                    ';
+                }
+                ?>
                 <li class="padding-right-1"><a href="#">Chuyên mục</a> </li>
-                <li class="padding-right-1"> <a href="#">Thành viên</a>
-                    <ul class="menu vertical">
-                        <li><a href="<?=base_url('dangnhap')?>">Đăng nhập</a> </li>
-                        <li><a href="<?=base_url('dangky')?>">Đăng ký</a> </li>
-                    </ul>
-                </li>
                 <li class="padding-right-1"><a href="#">Giới thiệu</a> </li>
                 <li class="padding-right-1"><a href="#">Liên hệ</a> </li>
             </ul>
@@ -46,9 +62,8 @@
     <!-- Container -->
     <div class="grid-container">
         <!-- Logo -->
-        <div class="grid-x grid-padding-x">
+        <div class="grid-x grid-padding-x" style="background: #074E68;padding-bottom: 1rem">
             <div class="cell large-4 medium-12"><img class="width-100" src="https://placehold.it/450x183&amp;text=LOGO" alt="company logo"> </div>
             <div class="cell auto"><img src="https://placehold.it/900x175&amp;text=Responsive Ads" alt=""> </div>
         </div>
-        <br>
         <!-- Endlogo -->

@@ -54,3 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['dangnhap'] = 'member/login';
 $route['dangky'] = 'member/register';
+$route['dangxuat'] = 'profile/logout';
+$route['(:num)-baivietmoi'] = 'blog/newpost/$1';
+$route['baiviet-(:num)'] = 'blog/displaypost/$1';

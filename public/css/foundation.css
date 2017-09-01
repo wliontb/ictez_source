@@ -2615,7 +2615,7 @@ ol.list-upper-roman {
     position: absolute;
     top: 50%;
     margin-top: -3px;
-    right: 1rem; }
+    right: 0rem; }
 
 .accordion-menu.align-left .is-accordion-submenu-parent > a::after {
   left: auto;

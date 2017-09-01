@@ -473,6 +473,30 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
+	 * Function to manager
+	 *
+	 * write by Wlion98
+	 *
+	 * @param	Array	$mngcate	Value manager of table Categories
+	 * @param	array	$mngtype	Value manager of table Types
+	 * @return	boolean
+	 */
+	public function permissionManager($mngcate, $mngtype)
+	{
+		$arrcate = explode('|', $mngcate);
+		$arrtype = explode('|', $mngtype);
+		$iduser = $this->session->userdata('ID');
+		$peruser = $this->session->userdata('Permission');
+
+		if ((in_array($iduser,$arrcate) || in_array($iduser,$arrtype))&&($peruser != 4)) {
+			return true;
+		}
+		return false;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
 	 * View Loader
 	 *
 	 * Loads "view" files.
