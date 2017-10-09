@@ -1,0 +1,144 @@
+/*header*/
+header nav {
+	box-shadow: 0 1px 1px 0 #000;
+}
+/*endheader*/
+
+/*body*/
+/*section a {
+	color: #17a2b8 !important;
+}*/
+
+section a:hover {
+	font-style: italic;
+	text-decoration: none;
+}
+
+.post:last-of-type {
+	border: none !important;
+}
+
+.media:last-of-type {
+    border-bottom:none !important;
+}
+
+.custom-panel {
+	margin-top:1rem;
+	border:1px solid #343a40 ;
+}
+
+.custom-panel-heading {
+	background-color: #343a40 ;
+	color:#fff;
+	padding:1px;
+	padding:1rem;
+}
+
+.custom-panel-heading h2 {
+	font-size: 18px;
+	line-height: 1;
+}
+
+.custom-panel-heading h2:before {
+	content: "\f142\00a0";
+	white-space: pre;
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.post {
+	border-bottom:1px dashed #ccc;
+}
+/*endbody*/
+
+/*footer*/
+
+.footer {
+	padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
+    margin-top: 1rem;
+}
+
+ul.footerlinks {
+	list-style-type:none;
+	text-align: left;
+}
+
+ul.footerlinks li {
+	display:inline-block;
+}
+
+ul.footerlinks li a {
+	color: #fff;
+	text-decoration: none;
+	padding:5px;
+}
+/*endfooter*/
+
+/*admin*/
+@media only screen and (min-width: 768px)  {
+	.usermenu {
+		left:-15% !important;
+	}
+}
+
+.custom-menu-left {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding:5px;
+	background: #3b3e47;
+    -webkit-box-shadow: 2px 2px 8px rgba(0,0,0,.08);
+    box-shadow: 2px 2px 8px rgba(0,0,0,.08);
+}
+
+.custom-menu-left li:hover {
+	background: #fff;
+	margin-left:5px;
+	transition: margin 0.5s;
+}
+
+.custom-menu-left li a:hover {
+	color:#000;
+}
+
+.custom-menu-left li a {
+	color:#fff;
+	line-height: 2;
+	font-size: 16px;
+}
+
+.widget {
+	background-color: #fff;
+    padding:5px;
+    -webkit-box-shadow: 0 1px 4px 0 #000;
+    box-shadow: 0 1px 4px 0 #000;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.widget-title {
+	font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    line-height: 1;
+    background-color: #fff;
+    padding:5px;
+}
+
+.widget-footer {
+	background: #c6c8ca;
+	padding:5px;
+}
+
+.widget2 {
+    -webkit-box-shadow: 0 1px 4px 0 #000;
+    box-shadow: 0 1px 4px 0 #000;
+}
+/*endadmin

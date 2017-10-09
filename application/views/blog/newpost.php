@@ -10,30 +10,36 @@
         </li>
       </ul>
     </nav>
-        <div class="cell large-8 medium-12">
-            <form method="POST" enctype="multipart/form-data">
-                <label>Tiêu đề bài viết</label>
-                <input type="text" name="Title">
-                <label>Miêu tả</label>
-                <input type="text" name="Des">
-                <label>Nội dung</label>
-                <textarea name="Content"></textarea>
-                <label>Ảnh đại diện</label>
-                <input type="text" placeholder="http://" name="Thumbnail">
-                <?php if ($this->load->permissionManager($datacate['Manager'], $datatype['Manager'])) : ?>
-                <!-- Public ? -->
-                <label>Hiển thị ngoài bảng tin ?</label>
-                <input type="radio" name="Public" value="0" checked><label>Không</label>
-                <input type="radio" name="Public" value="1"><label>Có</label>
-                <!-- end Select -->
-                <br>
-                <?php endif; ?>
-                <input type="submit" class="button success" name="">
+            <form method="POST" enctype="multipart/form-data" class="cell grid-x grid-padding-x">
+                <div class="cell medium-8">
+                    <label>Tiêu đề bài viết</label>
+                    <input type="text" name="Title">
+                    <label>Miêu tả</label>
+                    <input type="text" name="Des">
+                    <label>Nội dung</label>
+                    <textarea name="Content"></textarea>
+                    <label>Ảnh đại diện</label>
+                    <input type="text" placeholder="http://" name="Thumbnail">
+                    <input type="submit" class="button success" name="">
+                </div>                
+                <div class="cell medium-4">
+                    <div class="title">Tùy chọn</div>
+                    <?php 
+                    $this->load->permissionUser();
+                    if ($this->load->permissionManager($datacate['Manager'], $datatype['Manager'])) : ?>
+                    <!-- start Option -->
+                    <label>Hiển thị ngoài trang chủ ?</label>
+                    <input type="radio" name="Public" value="0" checked><label>Không</label>
+                    <input type="radio" name="Public" value="1"><label>Có</label>
+                    <label>Hiển thị trên bảng tin ?</label>
+                    <input type="radio" name="Special" value="0" checked><label>Không</label>
+                    <input type="radio" name="Special" value="1"><label>Có</label>
+                    <!-- end Select -->
+                    <?php endif; ?>
+                </div>                
+                <br>                                
             </form>
         </div>
-        <div class="cell large-4 medium-12">
-            <div class="title">Tùy chọn</div>
-        </div>
-
+        
     </div>
 </div>

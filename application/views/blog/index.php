@@ -1,167 +1,137 @@
-<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
-            <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
-            <div class="title-bar-title">Menu</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="custom-panel-heading">
+            <h2>Bài nổi bật</h2>
         </div>
-        <div class="top-bar shadow" id="responsive-menu">
-            <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
-                <li class="padding-right-1">
-                    <a href="#"> <i class="fi-list"></i> Chuyên mục 1</a>
-                    <ul class="vertical menu">
-                        <li> <a href="#">Item 1A</a>
-                            <ul class="vertical menu">
-                                <li><a href="#">Item 1A</a> </li>
-                                <li><a href="#">Item 1B</a> </li>
-                                <li><a href="#">Item 1C</a> </li>
-                                <li><a href="#">Item 1D</a> </li>
-                                <li><a href="#">Item 1E</a> </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Item 1B</a> </li>
-                    </ul>
-                </li>
-                <li class="padding-right-1"> <a href="#"><i class="fi-list"></i> Chuyên mục 2</a>
-                    <ul class="vertical menu">
-                        <li><a href="#">Item 2A</a> </li>
-                        <li><a href="#">Item 2B</a> </li>
-                    </ul>
-                </li>
-                <li class="padding-right-1"> <a href="#"><i class="fi-list"></i> Chuyên mục 3</a>
-                    <ul class="vertical menu">
-                        <li><a href="#">Item 3</a> </li>
-                        <li><a href="#">Item 3B</a> </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <br>
-        <div class="grid-x grid-padding-x">
-            <div class="cell medium-8">
-                <div class="cap-overlay">
-                    <div class="overlay">
-                        <div class="cell">No 1</div>
-                        <div class="cell">Image 1 Title</div>
+        <div id="carouselExampleCaptions" class="carousel slide mb-1" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo base_url('public/img/slide1.jpg') ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>
+                            <a href="<?php echo base_url('baiviet-'.$overlay[0]['ID']) ?>"><?php echo $overlay[0]['Title'] ?></a>
+                        </h3>
+                        <p><?php echo $overlay[0]['Content'] ?></p>
                     </div>
-                    <p> <img class="width-100" src="https://placehold.it/900x450&amp;text=Promoted Article" alt="main article image"> </p>
+                </div>
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="<?php echo base_url('public/img/slide2.jpg') ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>
+                            <a href="<?php echo base_url('baiviet-'.$overlay[1]['ID']) ?>"><?php echo $overlay[1]['Title'] ?></a>
+                        </h3>
+                        <p><?php echo $overlay[1]['Content'] ?></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo base_url('public/img/slide2.jpg') ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>
+                            <a href="<?php echo base_url('baiviet-'.$overlay[2]['ID']) ?>"><?php echo $overlay[2]['Title'] ?></a>
+                        </h3>
+                        <p><?php echo $overlay[2]['Content'] ?></p>
+                    </div>
                 </div>
             </div>
-            <div class="cell medium-4">
-                <div class="grid-y">
-                    <div class="cell medium-6 cap-overlay">
-                        <div class="grix-x overlay">
-                            <div class="cell">No 1</div>
-                            <div class="cell">Image 1 Title</div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="border border-dark p-2">
+            <p>ads</p>
+        </div>
+
+        <div class="custom-panel rounded-bottom" id="newtopic">
+            <div class="custom-panel-heading">
+                <h2>Bài viết mới</h2>
+            </div>
+            <?php foreach($dataposts as $bv) : ?>
+            <div class="post row no-gutters">
+                <div class="col-sm-3 p-1">
+                    <img class="w-100" height="160px" src="<?php echo $bv['Thumbnail'] ?>" alt="<?php echo $bv['Title']?>">
+                </div>
+                <div class="col-sm-9 p-1">
+                    <h3><?php echo $bv['Title'] ?></h3>
+                    <p><?php echo $bv['Des'] ?></p>
+                    <div class="btn-toolbar float-right mr-1" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-1" role="group" aria-label="First group">
+                            <a href="<?php echo base_url('baiviet-'.$bv['ID']) ?>" class="btn btn-secondary">Đọc tiếp</a>
+                            <a href="#" class="btn btn-secondary">Chia sẻ</a>
                         </div>
-                        <p> <img class="width-100" src="https://placehold.it/400x200&amp;text=Other cool article" alt="article promo image"> </p>
-                    </div>
-                    <div class="cell medium-6 cap-overlay">
-                        <div class="grix-x overlay">
-                            <div class="cell">No 1</div>
-                            <div class="cell">Image 1 Title</div>
-                        </div>
-                        <p> <img class="width-100" src="https://placehold.it/400x200&amp;text=Other cool article" alt="article promo image"> </p>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
+            <!-- pagination -->
+            <?php echo $this->pagination->create_links() ?>
+            <!-- endpagination -->
         </div>
-        <div class="grid-x title">
-            <div class="cell medium-12">
-                Bài viết mới
-            </div>
-        </div>
-        <div class="grid-x grid-padding-x">
-            <div class="cell large-8 medium-12 shadow">
-                <div class="grid-x post">
-                    <div class="cell medium-6">
-                        <p> <img src="https://placehold.it/600x370&text=Look at me!"> </p>
-                    </div>
-                    <div class="cell medium-6 padding-left-1">
-                        <h5><a href="#">'Death Star' Vaporizes Its Own Planet</a></h5>
-                        <p> <span><i class="fa fa-user" aria-hidden="true"></i> By Thadeus &nbsp;&nbsp;</i></span> <span><i class="fa fa-calendar" aria-hidden="true"></i> 11/23/16 &nbsp;&nbsp;</i></span> <span><i class="fa fa-comments" aria-hidden="true"></i> 6 comments</i></span> </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum delectus aperiam nesciunt magni facilis ullam.</p>
-                    </div>
+    </div>
+    <div class="col-md-4">
+        <aside>
+            <div class="custom-panel mt-md-0 rounded-bottom">
+                <div class="custom-panel-heading">
+                    <h2>Chuyên mục</h2>
                 </div>
-                <div class="grid-x post">
-                    <div class="cell medium-6">
-                        <p> <img src="https://placehold.it/600x370&text=Look at me!"> </p>
-                    </div>
-                    <div class="cell medium-6 padding-left-1">
-                        <h5><a href="#">'Death Star' Vaporizes Its Own Planet</a></h5>
-                        <p> <span><i class="fa fa-user" aria-hidden="true"></i> By Thadeus &nbsp;&nbsp;</i></span> <span><i class="fa fa-calendar" aria-hidden="true"></i> 11/23/16 &nbsp;&nbsp;</i></span> <span><i class="fa fa-comments" aria-hidden="true"></i> 6 comments</i></span> </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum delectus aperiam nesciunt magni facilis ullam.</p>
-                    </div>
-                </div>
-                <div class="grid-x post">
-                    <div class="cell medium-6">
-                        <p> <img src="https://placehold.it/600x370&text=Look at me!"> </p>
-                    </div>
-                    <div class="cell medium-6 padding-left-1">
-                        <h5><a href="#">'Death Star' Vaporizes Its Own Planet</a></h5>
-                        <p> <span><i class="fa fa-user" aria-hidden="true"></i> By Thadeus &nbsp;&nbsp;</i></span> <span><i class="fa fa-calendar" aria-hidden="true"></i> 11/23/16 &nbsp;&nbsp;</i></span> <span><i class="fa fa-comments" aria-hidden="true"></i> 6 comments</i></span> </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum delectus aperiam nesciunt magni facilis ullam.</p>
-                    </div>
-                </div>
-                <div class="grid-x post">
-                    <div class="cell medium-6">
-                        <p> <img src="https://placehold.it/600x370&text=Look at me!"> </p>
-                    </div>
-                    <div class="cell medium-6 padding-left-1">
-                        <h5><a href="#">'Death Star' Vaporizes Its Own Planet</a></h5>
-                        <p> <span><i class="fa fa-user" aria-hidden="true"></i> By Thadeus &nbsp;&nbsp;</i></span> <span><i class="fa fa-calendar" aria-hidden="true"></i> 11/23/16 &nbsp;&nbsp;</i></span> <span><i class="fa fa-comments" aria-hidden="true"></i> 6 comments</i></span> </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum delectus aperiam nesciunt magni facilis ullam.</p>
-                    </div>
-                </div>
-                <div class="grid-x post">
-                    <div class="cell medium-6">
-                        <p> <img src="https://placehold.it/600x370&text=Look at me!"> </p>
-                    </div>
-                    <div class="cell medium-6 padding-left-1">
-                        <h5><a href="#">'Death Star' Vaporizes Its Own Planet</a></h5>
-                        <p> <span><i class="fa fa-user" aria-hidden="true"></i> By Thadeus &nbsp;&nbsp;</i></span> <span><i class="fa fa-calendar" aria-hidden="true"></i> 11/23/16 &nbsp;&nbsp;</i></span> <span><i class="fa fa-comments" aria-hidden="true"></i> 6 comments</i></span> </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum delectus aperiam nesciunt magni facilis ullam.</p>
-                    </div>
-                </div>
-                <!-- pagination -->
-                <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-                    <li class="pagination-previous disabled">Previous</li>
-                    <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
-                    <li><a href="#" aria-label="Page 2">2</a> </li>
-                    <li><a href="#" aria-label="Page 3">3</a> </li>
-                    <li><a href="#" aria-label="Page 4">4</a> </li>
-                    <li class="ellipsis"></li>
-                    <li><a href="#" aria-label="Page 12">12</a> </li>
-                    <li><a href="#" aria-label="Page 13">13</a> </li>
-                    <li class="pagination-next"><a href="#" aria-label="Next page">Next</a> </li>
+                <ul class="list-group p-1">
+                    <?php foreach ($datacates as $cm) : ?>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="<?php echo base_url('chuyenmuc-'.$cm['ID']) ?>"><?php echo $cm['Name'] ?></a>
+                        <span class="badge badge-secondary">0</span>
+                    </li>
+                    <?php endforeach; ?>
                 </ul>
-                <!-- End pagination -->
             </div>
-            <div class="cell large-4 medium-12">
-                
-                <div class="grid-x">
-                    <div class="cell">
-                        <div class="title">ADS</div>
-                        <p> 
-                        </p>
+            <div class="custom-panel rounded-bottom">
+                <div class="custom-panel-heading">
+                    <h2>Follow</h2>
+                </div>
+                <form class="form-inline p-2">
+                    <div class="input-group w-100">
+                      <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                      <span class="btn-group">
+                        <button type="button" class="btn btn-secondary rounded-0 rounded-right">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                      </span>
                     </div>
-                    <div class="cell">
-                        <div class="title">Bình luận mới</div>
-                        <p>
-                            <div class="media-object">
-                                <div class="media-object-section"> <img class="thumbnail" src="https://placehold.it/100"> </div>
-                                <div class="media-object-section">
-                                    <h5>All I need is a space suit and I'm ready to go.</h5> </div>
-                            </div>
-                            <div class="media-object">
-                                <div class="media-object-section"> <img class="thumbnail" src="https://placehold.it/100"> </div>
-                                <div class="media-object-section">
-                                    <h5>All I need is a space suit and I'm ready to go.</h5> </div>
-                            </div>
-                            <div class="media-object">
-                                <div class="media-object-section"> <img class="thumbnail" src="https://placehold.it/100"> </div>
-                                <div class="media-object-section">
-                                    <h5>All I need is a space suit and I'm ready to go.</h5> </div>
-                            </div>
-                        </p>
-                    </div>
+                  </form>
+            </div>
+            <div class="custom-panel rounded-bottom">
+                <div class="custom-panel-heading">
+                    <h2>Xem nhiều</h2>
+                </div>
+                <div class="post p-1">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, nesciunt iusto sunt quisquam!</p>
+                </div>
+                <div class="post p-1">
+                    <p>Officiis a reprehenderit earum corporis eligendi nobis blanditiis dolor porro architecto illum, culpa.</p>
+                </div>
+                <div class="post p-1">
+                    <p>Sint deleniti tenetur cupiditate voluptate voluptas amet, officiis, unde et consequuntur vero explicabo.</p>
+                </div>
+                <div class="post p-1">
+                    <p>Nobis voluptatum animi voluptates sunt, debitis nam ut, dolor ab. Pariatur, reiciendis quidem.</p>
+                </div>
+                <div class="post p-1">
+                    <p>Aspernatur at harum itaque labore, corrupti beatae fuga, ullam nihil reprehenderit officiis laudantium.</p>
                 </div>
             </div>
-        </div>
+        </aside>
+    </div>
+</div>

@@ -1,70 +1,24 @@
-</div>
-    <!-- Container -->
-    <!-- Footer -->
+    </section>
     <footer>
-      <div class="grid-x grid-container grid-padding-x">
-        <div class="cell grid-x main-footer">
-          <div class="medium-4 cell">
-            <h5 class="text-left medium-text-center">Info</h5>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-            <p>Địa chỉ</p>
-            <p>Phone: +84 987 196 812</p>
-            <p>E-mail : ictezdotnet@gmail.com</p>
-          </div>
-          <div class="medium-4 cell">
-            <h5 class="text-left medium-text-center">Hash tag</h5>
-            <p>
-            <span class="secondary label">Space</span>
-            <span class="secondary label">Galaxies</span>
-            <span class="secondary label">Milky Way</span>
-            <span class="secondary label">Black Holes</span>
-            <span class="secondary label">Rebels</span>
-            <span class="secondary label">Death Star</span>
-            <span class="secondary label">Republic</span>
-            <span class="secondary label">R2D2</span>
-            </p>           
-         </div>
-          <div class="medium-4 cell">
-            <h5 class="text-left medium-text-center">Kết nối</h5>
-            <p>
-            <div class="grid-x text-center">
-              <div class="auto cell"><i class="fa-3x fa fa-facebook-official" aria-hidden="true"></i> </div>
-              <div class="auto cell"><i class="fa-3x fa fa-twitter" aria-hidden="true"></i> </div>
-              <div class="auto cell"><i class="fa-3x fa fa-instagram" aria-hidden="true"></i> </div>
-              <div class="auto cell"><i class="fa-3x fa fa-google-plus-square" aria-hidden="true"></i> </div>
-              <div class="auto cell"><i class="fa-3x fa fa-youtube" aria-hidden="true"></i> </div>
-              <div class="auto cell"><i class="fa-3x fa fa-github" aria-hidden="true"></i> </div>
-            </div>
+        <div class="footer">
+            <ul class="footerlinks">
+                <li><a href="<?php echo base_url() ?>"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Liên hệ</a></li>
+                <li><a href="#">Trợ giúp</a></li>
+                <li><a href="#">Tác giả</a></li>
+            </ul>
+            <p class="lead">
+                Copyright © <?php echo date('Y') ?> ICTez Blog.
             </p>
-          </div>
         </div>
-        <div class="cell bottom-footer">
-          <div class="grid-x grid-padding-x">
-            <div class="medium-6 cell">
-              <ul class="menu">
-                <li class="menu-text">Copyright © <?php echo date('Y') ?> ICTez</li>
-              </ul>
-            </div>
-            <div class="medium-6 cell">
-              <ul class="menu align-right">
-                <li><a href="#">Faq</a></li>
-                <li><a href="#">Site map</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
-            </div>
-            
-            </div>
-        </div>
-      </div>
     </footer>
-    <!-- End Footer -->
-    <!-- SCRIPT -->
-    
-    <script src="<?=base_url('public/js/vendor/jquery.js')?>"></script>
-    <script src="<?=base_url('public/js/vendor/foundation.min.js')?>"></script>
-    <script>
-        $(document).foundation();
-    </script>
-</body>
 
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
+</body>
 </html>

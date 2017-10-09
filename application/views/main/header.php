@@ -1,69 +1,57 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?=(isset($title) ? $title : 'ICTEZ-BLOG CNTT')?></title>
-    <link rel="stylesheet" href="<?=base_url('public/css/foundation.css')?>" />
-    <!-- Customies CSS -->
-    <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/app.css')?>" />
-    <!-- Icon Font Style -->
-    <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/font-awesome.min.css')?>" />
+    <title><?php echo (isset($title) ? $title : 'Cộng đồng CNTT ICTEZ') ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.css') ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css') ?>"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
-    <!-- Header -->
-    <div class="top-bar shadow" data-sticky data-margin-top="0" style="border-bottom:1px solid #24292e">
-        <!-- Menu -->
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
-                <li class="padding-right-1"><a href="<?=base_url('index.php')?>" class="menu-text primary">ICTez</a></li>
-                <?php 
-                if (!is_null($this->session->userdata('Username'))) {
-                    echo '
-                    <li class="padding-right-1"> <a href="'.base_url('profile').'">'.$this->session->userdata('Username').'</a>
-                        <ul class="menu vertical">
-                            <li><a href="'.base_url('1-baivietmoi').'">Bài viết mới</a> </li>
-                            <li><a href="'.base_url('admin').'">Quản lý</a> </li>
-                            <li><a href="'.base_url('dangxuat').'" style="border-top:1px solid #e6e6e6">Đăng xuất</a> </li>
-                        </ul>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand font-weight-bold" href="<?php echo base_url() ?>">ICTEZ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
                     </li>
-                    ';
-                } else {
-                    echo '
-                    <li class="padding-right-1"> <a href="#">Thành viên</a>
-                        <ul class="menu vertical">
-                            <li><a href="'.base_url('dangnhap').'">Đăng nhập</a> </li>
-                            <li><a href="'.base_url('dangky').'">Đăng ký</a> </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hỗ trợ</a>
                     </li>
-                    ';
-                }
-                ?>
-                <li class="padding-right-1"><a href="#">Chuyên mục</a> </li>
-                <li class="padding-right-1"><a href="#">Giới thiệu</a> </li>
-                <li class="padding-right-1"><a href="#">Liên hệ</a> </li>
-            </ul>
-        </div>
-        <!-- End Menu -->
-        <div class="top-bar-right">
-            <ul class="menu">
-                <li>
-                    <input type="search" placeholder="Search"> </li>
-                <li>
-                    <button type="button" class="button">Search</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- End Header -->
-    <!-- Container -->
-    <div class="grid-container">
-        <!-- Logo -->
-        <div class="grid-x grid-padding-x" style="background: #074E68;padding-bottom: 1rem">
-            <div class="cell large-4 medium-12"><img class="width-100" src="https://placehold.it/450x183&amp;text=LOGO" alt="company logo"> </div>
-            <div class="cell auto"><img src="https://placehold.it/900x175&amp;text=Responsive Ads" alt=""> </div>
-        </div>
-        <!-- Endlogo -->
+                    <li class="nav-item dropdown">
+                        <?php echo displayUser(
+                            '
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thành viên</a>
+                            <div class="dropdown-menu mt-2 rounded-0" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="'.base_url('dangnhap').'">Đăng nhập</a>
+                                <a class="dropdown-item" href="'.base_url('dangky').'">Đăng ký</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Quên mật khẩu</a>
+                            </div>
+                            ','
+                            <a class="nav-link dropdown-toggle text-light font-weight-bold" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$this->session->userdata('Username').'</a>
+                            <div class="dropdown-menu mt-2 rounded-0" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="'.base_url('quanly').'">Quản lý</a>
+                                <a class="dropdown-item" href="'.base_url('hoatdong').'">Hoạt động</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="'.base_url('dangxuat').'">Đăng xuất</a>
+                            </div>
+                            '); ?>
+                    </li>
+                </ul>
+                <form class="form-inline ml-md-auto">
+                    <input class="form-control mr-sm-2" type="text" placeholder="từ khóa" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="container-fluid mt-5 pt-3">
