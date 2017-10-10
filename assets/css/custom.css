@@ -85,7 +85,7 @@ ul.footerlinks li a {
 /*admin*/
 @media only screen and (min-width: 768px)  {
 	.usermenu {
-		left:-15% !important;
+		left:10% !important;
 	}
 }
 

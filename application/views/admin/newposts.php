@@ -67,6 +67,10 @@
                 </div>
             </li>
             <li class="list-group-item">
+                <p class="font-weight-bold">Thêm tags</p>
+                <input type="text" data-tags-input-name="tag" id="tagBox" value="fuck u">
+            </li>
+            <li class="list-group-item">
                 <p class="text-secondary font-italic">Đang phát triển</p>
             </li>
         </ul>

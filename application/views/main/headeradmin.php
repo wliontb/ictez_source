@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.css') ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css') ?>"/>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugin/tag-basic-style.css') ?>">
 </head>
 <body>
     <header>
@@ -26,8 +27,8 @@
                 </ul>
                 <div class="btn-group ml-md-auto">
                     <button type="button" class="btn btn-secondary"><?php echo $this->session->userdata('Username') ?>
-                    <span class="badge badge-pill badge-danger">1</span>
-                    <span class="badge badge-pill badge-info">1</span>
+                    <span class="badge badge-pill badge-danger">1<i class="fa fa-globe" aria-hidden="true"></i></span>
+                    <span class="badge badge-pill badge-info">1<i class="fa fa-commenting-o" aria-hidden="true"></i></span>
                     </button>
                     <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>

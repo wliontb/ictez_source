@@ -34,7 +34,8 @@
                                 <a class="dropdown-item" href="#">Quên mật khẩu</a>
                             </div>
                             ','
-                            <a class="nav-link dropdown-toggle text-light font-weight-bold" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$this->session->userdata('Username').'</a>
+                            <a class="nav-link dropdown-toggle text-light font-weight-bold" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$this->session->userdata('Username').' <span class="badge badge-pill badge-danger">1<i class="fa fa-globe" aria-hidden="true"></i></span>
+                            <span class="badge badge-pill badge-info">1<i class="fa fa-commenting-o" aria-hidden="true"></i></span></a>
                             <div class="dropdown-menu mt-2 rounded-0" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="'.base_url('quanly').'">Quản lý</a>
                                 <a class="dropdown-item" href="'.base_url('hoatdong').'">Hoạt động</a>
