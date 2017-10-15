@@ -19,7 +19,7 @@ class Blog extends CI_Controller
 		$config = array(
 				'base_url' => base_url('index.php'), 
 				'total_rows' => $this->PostModel->countPosts('Posts.Public = 1'),
-				'per_page' => 2,
+				'per_page' => 6,
 				'full_tag_open' => '<nav aria-label="Page navigation" class="pt-2" style="border-top: 1px dashed #ccc;"><ul class="pagination justify-content-center">',
 				'full_tag_close' => '</ul></nav>',
 				'attributes' => array('class'=>'page-link'),
@@ -55,9 +55,9 @@ class Blog extends CI_Controller
 		$this->load->view('main/container', $this->_data);
 	}
 
-	public function displayPost($idPost)
+	public function displayPost($idpost)
 	{
-		$datapost = $this->PostModel->getPost($idPost);
+		$datapost = $this->PostModel->getPost($idpost);
 		$this->_data = array(
 				'title' => $datapost['Title'],
 				'view' => 'blog/displaypost',
@@ -65,25 +65,53 @@ class Blog extends CI_Controller
 				'datatype' => $this->PostModel->getType($datapost['ID_type']),
 				'datacate' => $this->PostModel->getCate($this->PostModel->getType($datapost['ID_type'])['ID_cate']),
 				'datacates' => $this->PostModel->getCates(),
-				'datacomment' => $this->PostModel->getComments(5,0,$where = 'comments.ID_post='.$idPost),
+				'datacomment' => $this->PostModel->getComments(5,0,$where = 'comments.ID_post='.$idpost),
 			);
 
-		$this->form_validation->set_rules('content','Nội dung bình luận','required|max_length[1000]|min_length[6]');
+		$this->form_validation->set_rules('Content','Nội dung bình luận','required|max_length[1000]|min_length[4]');
 
 		if ($this->form_validation->run()) {
 			$data = array(
 					'ID_user' => $this->session->userdata('ID'),
-					'ID_post' => $idPost,
+					'ID_post' => $idpost,
 					'Date_create' => time(),
-					'Content' => $this->input->post('content'),
+					'Content' => $this->input->post('Content'),
 				);
 
 			$this->PostModel->createComment($data);
-			$this->load->view('main/container',$this->_data);
 		}
 
 		$this->load->view('main/container',$this->_data);
 	}
+
+	public function displayCate($idcate)
+	{
+		$thiscate = $this->PostModel->getCate($idcate);
+		$this->_data = array(
+			'title' => $thiscate['Name'],
+			'view' => 'blog/displaycate',
+			'datacate' => $thiscate,
+			'datatypes' => $this->PostModel->getTypes('','',$where = 'ID_cate='.$thiscate['ID']),
+			'datacates' => $this->PostModel->getCates(),
+		);
+
+		$this->load->view('main/container',$this->_data);
+	}
+
+	public function displayType($idtype)
+	{
+		$thistype = $this->PostModel->getType($idtype);
+		$this->_data = array(
+			'title' => $thistype['Name'],
+			'view' => 'blog/displaytype',
+			'datatype' => $thistype,
+			'dataposts' => $this->PostModel->getPosts('','',$where = 'ID_type='.$thistype['ID']),
+			'datacates' => $this->PostModel->getCates(),
+		);
+
+		$this->load->view('main/container',$this->_data);
+	}
+
 }
 
 

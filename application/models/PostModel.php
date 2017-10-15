@@ -52,6 +52,19 @@ class PostModel extends CI_Model
 		return $result->row_array();
 	}
 
+	public function getTypes($limit, $offset, $where = '')
+	{
+		$this->db->select('*');
+		$this->db->from($this->_type);
+		if (!empty($where)) {
+			$this->db->where($where);
+		}
+		$this->db->limit($limit,$offset);
+		$result = $this->db->get();
+
+		return $result->result_array();
+	}
+
 	public function countTypes($where = '')
 	{
 		if (empty($where)) {
@@ -65,12 +78,18 @@ class PostModel extends CI_Model
 	public function getPost($idPost)
 	{
 		$this->db->select('*');
-		$this->db->from($this->_post);
-		$this->db->join($this->_user,'posts.ID_user = users.ID');
+		$this->db->from($this->_user);
+		$this->db->join($this->_post,'posts.ID_user = users.ID');
 		$this->db->where('posts.ID',$idPost);
 		$result = $this->db->get();
 
 		return $result->row_array();
+	}
+
+	public function putPost($idpost,$data)
+	{
+		$this->db->where('ID', $idpost);
+		$this->db->update($this->_post, $data); 
 	}
 
 	public function getComments($limit, $offset, $where = '')

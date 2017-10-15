@@ -68,9 +68,35 @@ class Admin extends CI_Controller
 		$this->_data = array(
 			'title' => 'Thêm bài viết mới',
 			'view' => 'admin/newposts',
+			'datacates' => $this->PostModel->getCates(),
+			'datatypes' => $this->PostModel->getTypes('','',$where = 'ID_cate=1'),
 		);
 
-		$this->load->view('main/admin',$this->_data);
+		$this->form_validation->set_rules('Categories','required');
+		$this->form_validation->set_rules('Types','required');
+		$this->form_validation->set_rules('Title','Tiêu đề bài viết','required|max_length[300]|min_length[5]');
+		$this->form_validation->set_rules('Des','Miêu tả bài viết','required|max_length[300]|min_length[5]');
+		$this->form_validation->set_rules('Content','Nội dung','required|min_length[5]');
+		$this->form_validation->set_rules('Thumbnail','Ảnh đại diện','required|max_length[150]');
+		$this->form_validation->set_rules('Tags','required');
+
+		if ($this->form_validation->run() === true) {
+			$data = array(
+					'Title' => $this->input->post('Title'),
+					'Des' => $this->input->post('Des'),
+					'Content' => $this->input->post('Content'),
+					'Thumbnail' => $this->input->post('Thumbnail'),
+					'Date_create' => time(),
+					'ID_user' => $this->session->userdata('ID'),
+					'Public' => (($this->input->post('Public') != null) ? $this->input->post('Public') : 0),
+					'Special' => (($this->input->post('Special') != null) ? $this->input->post('Special') : 0),
+					'Tags' => $this->input->post('hidden-Tags'),
+					'ID_type' => $this->input->post('Types'),
+				);
+			redirect('baiviet-'.$this->PostModel->createPost($data));
+		} else {
+			$this->load->view('main/admin',$this->_data);
+		}
 	}
 
 	public function setProfile()
@@ -79,6 +105,62 @@ class Admin extends CI_Controller
 			'title' => 'Cá nhân',
 			'view' => 'admin/profile',
 		);
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function listPosts()
+	{
+		$this->_data = array(
+			'title' => 'Danh sách bài viết',
+			'view' => 'admin/listpost',
+			'postsactive' => $this->PostModel->getPosts('','',$where = 'Public=1'),
+			'postsnoactive' => $this->PostModel->getPosts('','',$where = 'Public=0'),
+		);
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function listMembers()
+	{
+		$this->_data = array(
+			'title' => 'Danh sách thành viên',
+			'view' => 'admin/listmember',
+			'memactive' => $this->UserModel->getUsers('','',$where = 'Permission!=0'),
+			'memnoactive' => $this->UserModel->getUsers('','',$where = 'Permission=0'),
+		);
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function editPost($idpost)
+	{
+		$thispost = $this->PostModel->getPost($idpost);
+		$this->_data = array(
+			'title' => $thispost['Title'],
+			'view' => 'admin/editpost',
+			'datapost' => $thispost,
+		);
+
+		$this->form_validation->set_rules('Title','Tiêu đề bài viết','required|max_length[300]|min_length[5]');
+		$this->form_validation->set_rules('Des','Miêu tả bài viết','required|max_length[300]|min_length[5]');
+		$this->form_validation->set_rules('Content','Nội dung','required|min_length[5]');
+		$this->form_validation->set_rules('Thumbnail','Ảnh đại diện','required|max_length[150]');
+		$this->form_validation->set_rules('Tags','required');
+
+		if($this->form_validation->run()){
+			$dataupdate = array(
+				'Title' => $this->input->post('Title'),
+				'Des' => $this->input->post('Des'),
+				'Content' => $this->input->post('Content'),
+				'Thumbnail' => $this->input->post('Thumbnail'),
+				'Date_modify' => time(),
+				'Tags' => $this->input->post('hidden-Tags'),
+			);
+
+			$this->PostModel->putPost($idpost,$dataupdate);
+			redirect(base_url('baiviet-'.$idpost));
+		}
 
 		$this->load->view('main/admin',$this->_data);
 	}

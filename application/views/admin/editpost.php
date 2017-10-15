@@ -1,56 +1,36 @@
 <nav class="breadcrumb">
     <a class="breadcrumb-item" href="<?php echo base_url() ?>"><i class="fa fa-tachometer" aria-hidden="true"></i> Home</a>
-    <a class="breadcrumb-item" href="<?php echo base_url('quanly') ?>">Quản lý</a>
-    <span class="breadcrumb-item active">Thêm bài viết</span>
+    <a class="breadcrumb-item" href="<?php echo base_url('quanly/danhsachbaiviet') ?>">Bài viết</a>
+    <span class="breadcrumb-item active">Sửa bài viết</span>
 </nav>
 <form method="POST" class="row">
     <div class="col-md-8">
         <div class="custom-panel p-2 rounded-bottom rounded-top">
             <div class="custom-panel-heading">
-                <h2>Thêm bài viết mới</h2>
+                <h2><?php echo $title; ?></h2>
             </div>
             <?php echo validation_errors('<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>','</div>')?>
             <div class="form-group">
-                <label for="selectcategories">Chọn chuyên mục</label>
-                <select class="form-control" id="selectcategories" name="Categories">
-                    <?php 
-                        foreach($datacates as $cm){
-                            echo '<option value="'.$cm['ID'].'">'.$cm['Name'].'</option>';
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="selecttypes">Chọn thể loại</label>
-                <select class="form-control" id="selecttypes" name="Types">
-                    <?php 
-                        foreach($datatypes as $tl){
-                            echo '<option value="'.$tl['ID'].'">'.$tl['Name'].'</option>';
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
                 <label>Tiêu đề bài viết</label>
-                <input type="text" class="form-control" name="Title" value="">
+                <input type="text" class="form-control" name="Title" value="<?php echo $datapost['Title'] ?>">
             </div>
             <div class="form-group">
-                <label>Miêu tả bài viết</label>
-                <textarea class="form-control" name="Des"></textarea>
+                <label>Mô tả bài viết</label>
+                <textarea class="form-control" name="Des"><?php echo $datapost['Des'] ?></textarea>
             </div>
             <div class="form-group">
                 <label>Nội dung bài viết</label>
-                <textarea class="form-control" name="Content" id="ckeditor"></textarea>
+                <textarea class="form-control" name="Content" id="ckeditor"><?php echo $datapost['Content'] ?></textarea>
             </div>
             <div class="form-group">
                 <label>Ảnh đại diện của bài</label>
-                <input type="text" class="form-control" placeholder="http://" name="Thumbnail">
+                <input type="text" class="form-control" placeholder="http://" name="Thumbnail" value="<?php echo $datapost['Thumbnail'] ?>">
             </div>
             <div class="form-group">
-                <input type="submit" name="submitpost" class="btn btn-success" value="Đăng bài"/>
+                <input type="submit" name="submitpost" class="btn btn-success" value="Sửa bài"/>
             </div>      
         </div>
     </div>
@@ -80,7 +60,7 @@
             </li>
             <li class="list-group-item">
                 <p class="font-weight-bold">Thêm tags</p>
-                <input type="text" name="Tags" value="ictez" placeholder="Thêm từ khóa" class="tm-input form-control"/>
+                <input type="text" name="Tags" value="<?php echo $datapost['Tags'] ?>" placeholder="Thêm từ khóa" class="tm-input form-control"/>
             </li>
             <li class="list-group-item">
                 <p class="text-secondary font-italic">Đang phát triển</p>

@@ -41,7 +41,7 @@
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     <?php 
                         $tags = $datapost['Tags'];
-                        $arraytag = explode('|',$tags);
+                        $arraytag = explode(',',$tags);
                         foreach ($arraytag as $tag) :
                     ?>
                     <?php echo $tag.',' ?>
@@ -54,6 +54,17 @@
             <div class="custom-panel-heading">
                 <h3 style="font-size: 16px">Bình luận</h2>
             </div>
+            <?php if(!is_null($this->session->userdata('Username'))) : ?>
+                <form method="POST" class="p-2">     
+                <?php echo validation_errors('<div class="alert alert-danger" role="alert">','</div>')?>
+                    <div class="form-group">
+                        <label for="commentform" class="form-text text-muted">Nhập bình luận</label>
+                        <textarea class="form-control" id="commentform" rows="3" name="Content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi</button>
+                    <hr>
+                </form>
+            <?php endif; ?>
             <?php echo (empty($datacomment)) ? '<p class="p-1">Chưa có bình luận</p>' : ''; ?>
             <?php foreach($datacomment as $bl) : ?>
             <div class="media p-2" style="border-bottom:1px solid #ccc">
@@ -75,7 +86,7 @@
             <ul class="list-group p-1">
                 <?php foreach($datacates as $cm) : ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <?php echo $cm['Name'] ?>
+                        <a href="<?php echo base_url('chuyenmuc-'.$cm['ID']) ?>"><?php echo $cm['Name'] ?></a>
                         <span class="badge badge-secondary">2</span>
                     </li>
                 <?php endforeach; ?>
@@ -101,7 +112,7 @@
         </div>
         <div class="custom-panel rounded-bottom">
             <div class="custom-panel-heading">
-                <h2>Xem nhiều</h2>
+                <h2>Cùng chuyên mục</h2>
             </div>
             <div class="post p-1">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, nesciunt iusto sunt quisquam!</p>

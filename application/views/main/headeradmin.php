@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.css') ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css') ?>"/>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugin/tag-basic-style.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugin/tagmanager.css') ?>">
+    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 </head>
 <body>
     <header>
@@ -55,7 +56,7 @@
                     <a class="nav-link" href="<?php echo base_url('quanly/canhan') ?>"><i class="fa fa-user-o" aria-hidden="true"></i> Cá nhân</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-users" aria-hidden="true"></i> Thành viên</a>
+                    <a class="nav-link" href="<?php echo base_url('quanly/danhsachthanhvien') ?>"><i class="fa fa-users" aria-hidden="true"></i> Thành viên</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="button-post" href="#"><i class="fa fa-book" aria-hidden="true"></i> Bài viết <i class="fa fa-caret-down float-right" aria-hidden="true"></i></a>
@@ -65,7 +66,7 @@
                         <a class="nav-link active" href="<?php echo base_url('quanly/thembaiviet') ?>">- Thêm bài mới</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">- Danh sách</a>
+                        <a class="nav-link" href="<?php echo base_url('quanly/danhsachbaiviet') ?>">- Danh sách</a>
                     </li>
                 </ul>
                 <li class="nav-item">

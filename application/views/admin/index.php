@@ -1,6 +1,6 @@
 <nav class="breadcrumb">
-    <a class="breadcrumb-item" href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Home</a>
-    <a class="breadcrumb-item" href="#">User</a>
+    <a class="breadcrumb-item" href="<?php echo base_url() ?>"><i class="fa fa-tachometer" aria-hidden="true"></i> Home</a>
+    <a class="breadcrumb-item" href="<?php echo base_url('quanly') ?>">Quản lý</a>
     <span class="breadcrumb-item active">Dashboard</span>
 </nav>
 <div class="row mb-3">
