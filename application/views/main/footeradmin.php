@@ -30,15 +30,41 @@
             $("#button-post").click(function(){
                 $("#menu-post").toggleClass("d-none");
             });
-            // if($("body").height()<$(document).height()){
-            //     $(".footer").addClass("fixed-bottom");
-            // };
+
+            $('#file').change(function(){
+                $('#thumbnail').attr({'value': 'đang upload','readonly': 'true'});
+                var $files = $(this)[0].files;
+                var formData = new FormData();
+                formData.append("image", $files[0]);
+
+                var settings =
+                {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://api.imgur.com/3/image",
+                    "method": "POST",
+                    "headers": {
+                        "authorization": "Client-ID 75ea7cc4abd608b"
+                    },
+                    "processData": false,
+                    "contentType": false,
+                    "mimeType": "multipart/form-data",
+                    "data" : formData,
+                };
+
+                $.ajax(settings).done(function(response) {
+                    var kq= JSON.parse(response).data.link;
+                    $('#thumbnail').val(kq).prop('readonly',false).addClass('is-valid');
+                });
+                
+            })
     </script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/plugin/tagmanager.js') ?>"></script>
 
     <script type="text/javascript">
-        jQuery(".tm-input").tagsManager();
+        $('#fuck').tooltip();
+        $('.tm-input').tagsManager();
     </script>
 </body>
 </html>

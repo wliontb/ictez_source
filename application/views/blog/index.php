@@ -62,10 +62,10 @@
                 <div class="col-sm-3 p-1">
                     <img class="w-100" height="160px" src="<?php echo $bv['Thumbnail'] ?>" alt="<?php echo $bv['Title']?>">
                 </div>
-                <div class="col-sm-9 p-1">
-                    <h3><?php echo $bv['Title'] ?></h3>
-                    <p><?php echo $bv['Des'] ?></p>
-                    <div class="btn-toolbar float-right mr-1" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="col-sm-9 p-1 row no-gutters">
+                    <h3 class="col-12"><?php echo $bv['Title'] ?></h3>
+                    <p class="col-12"><?php echo $bv['Des'] ?></p>
+                    <div class="btn-toolbar col align-self-end" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-1" role="group" aria-label="First group">
                             <a href="<?php echo base_url('baiviet-'.$bv['ID']) ?>" class="btn btn-secondary">Đọc tiếp</a>
                             <a href="#" class="btn btn-secondary">Chia sẻ</a>

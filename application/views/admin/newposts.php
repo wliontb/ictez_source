@@ -3,7 +3,7 @@
     <a class="breadcrumb-item" href="<?php echo base_url('quanly') ?>">Quản lý</a>
     <span class="breadcrumb-item active">Thêm bài viết</span>
 </nav>
-<form method="POST" class="row">
+<form method="POST" enctype="multipart/form-data" class="row">
     <div class="col-md-8">
         <div class="custom-panel p-2 rounded-bottom rounded-top">
             <div class="custom-panel-heading">
@@ -38,7 +38,7 @@
                 <input type="text" class="form-control" name="Title" value="">
             </div>
             <div class="form-group">
-                <label>Miêu tả bài viết</label>
+                <label>Mô tả bài viết</label>
                 <textarea class="form-control" name="Des"></textarea>
             </div>
             <div class="form-group">
@@ -46,8 +46,10 @@
                 <textarea class="form-control" name="Content" id="ckeditor"></textarea>
             </div>
             <div class="form-group">
-                <label>Ảnh đại diện của bài</label>
-                <input type="text" class="form-control" placeholder="http://" name="Thumbnail">
+                <label>Ảnh mô tả của bài</label>
+                <input type="text" class="form-control" placeholder="http://" name="Thumbnail" id="thumbnail" value="">
+                <div id="loadfile"></div>
+                <input type="file" id="file" name="imageupload" class="form-control-file">
             </div>
             <div class="form-group">
                 <input type="submit" name="submitpost" class="btn btn-success" value="Đăng bài"/>

@@ -27,7 +27,9 @@
             </div>
             <div class="form-group">
                 <label>Ảnh đại diện của bài</label>
-                <input type="text" class="form-control" placeholder="http://" name="Thumbnail" value="<?php echo $datapost['Thumbnail'] ?>">
+                <input type="text" class="form-control" placeholder="http://" name="Thumbnail" id="thumbnail" value="<?php echo $datapost['Thumbnail'] ?>">
+                <div id="loadfile"></div>
+                <input type="file" id="file" name="imageupload" class="form-control-file">
             </div>
             <div class="form-group">
                 <input type="submit" name="submitpost" class="btn btn-success" value="Sửa bài"/>

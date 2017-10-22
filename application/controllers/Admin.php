@@ -164,6 +164,17 @@ class Admin extends CI_Controller
 
 		$this->load->view('main/admin',$this->_data);
 	}
+
+	public function catesManager()
+	{
+		$this->_data = array(
+			'title' => 'Quản lý chuyên mục',
+			'view' => 'admin/catesmanager',
+			'datacates' => $this->PostModel->getCates(),
+		);
+
+		$this->load->view('main/admin',$this->_data);
+	}
 }
 
  ?>

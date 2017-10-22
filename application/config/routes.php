@@ -65,5 +65,6 @@ $route['quanly/suabaiviet-(:num)'] = 'admin/editpost/$1';
 $route['quanly/canhan'] = 'admin/setprofile';
 $route['quanly/danhsachbaiviet'] = 'admin/listposts';
 $route['quanly/danhsachthanhvien'] = 'admin/listmembers';
+$route['quanly/chuyenmuc'] = 'admin/catesmanager';
 $route['chuyenmuc-(:num)'] = 'blog/displaycate/$1';
 $route['theloai-(:num)'] = 'blog/displaytype/$1';

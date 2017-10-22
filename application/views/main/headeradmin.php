@@ -59,6 +59,9 @@
                     <a class="nav-link" href="<?php echo base_url('quanly/danhsachthanhvien') ?>"><i class="fa fa-users" aria-hidden="true"></i> Thành viên</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('quanly/chuyenmuc') ?>"><i class="fa fa-folder-open-o" aria-hidden="true"></i> Chuyên mục </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="button-post" href="#"><i class="fa fa-book" aria-hidden="true"></i> Bài viết <i class="fa fa-caret-down float-right" aria-hidden="true"></i></a>
                 </li>
                 <ul class="nav flex-column d-none pl-3" id="menu-post">

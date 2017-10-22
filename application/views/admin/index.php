@@ -7,22 +7,22 @@
     <div class="col-md-6">
         <div class="widget">
             <h2 class="widget-title float-left">
-                <p class="text-success"><i class="fa fa-link" aria-hidden="true"></i> Bài viết : </p>
+                <p><i class="fa fa-link" aria-hidden="true"></i> Bài viết : </p>
                 <small class="text-muted">Bài viết mới nhất : <a href="<?php echo base_url('baiviet-'.$last_post[0]['ID']) ?>"><?php echo $last_post[0]['Title'] ?></a></small>
             </h2>
             <div class="float-right">
-                <b><?php echo $count_posts; ?></b>
+                <h3 class="text-warning font-weight-bold"><?php echo $count_posts; ?></h3>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="widget">
             <h2 class="widget-title float-left">
-                <p class="text-success"><i class="fa fa-link" aria-hidden="true"></i> Thành viên :</p>
+                <p><i class="fa fa-link" aria-hidden="true"></i> Thành viên :</p>
                 <small class="text-muted">Thành viên mới nhất : <a href="<?php echo base_url('thanhvien-'.$last_user[0]['ID']) ?>"><?php echo $last_user[0]['Username'] ?></a></small>
             </h2>
             <div class="float-right">
-                <b><?php echo $count_users; ?></b>
+                <h3 class="text-warning font-weight-bold"><?php echo $count_users; ?></h3>
             </div>
         </div>
     </div>
