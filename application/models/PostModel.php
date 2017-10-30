@@ -86,10 +86,29 @@ class PostModel extends CI_Model
 		return $result->row_array();
 	}
 
+	public function updateView($idpost)
+	{
+		$this->db->set('View','View+1',FALSE);
+		$this->db->where('ID',$idpost);
+		$this->db->update($this->_post);
+	}
+
 	public function putPost($idpost,$data)
 	{
 		$this->db->where('ID', $idpost);
 		$this->db->update($this->_post, $data); 
+	}
+
+	public function putCate($idcate,$data)
+	{
+		$this->db->where('ID', $idcate);
+		$this->db->update($this->_cate, $data);
+	}
+
+	public function putType($idtype,$data)
+	{
+		$this->db->where('ID', $idtype);
+		$this->db->update($this->_type, $data);
 	}
 
 	public function getComments($limit, $offset, $where = '')
@@ -133,13 +152,23 @@ class PostModel extends CI_Model
 	public function createPost($data = array())
 	{
 		$this->db->insert($this->_post,$data);
-
-		return $this->db->count_all($this->_post);
+		$this->db->select_max('ID');
+		return $this->db->get($this->_post)->row('ID');
 	}
 
 	public function createComment($data = array())
 	{
 		$this->db->insert($this->_comment,$data);
+	}
+
+	public function createCate($data = array())
+	{
+		$this->db->insert($this->_cate,$data);
+	}
+
+	public function createType($data = array())
+	{
+		$this->db->insert($this->_type,$data);
 	}
 
 	public function countComments($where = '')
@@ -152,6 +181,20 @@ class PostModel extends CI_Model
 		}
 	}
 
+	public function deletePost($id)
+	{
+		$this->db->delete($this->_post,array('ID' => $id));
+	}
+
+	public function deleteCate($id)
+	{
+		$this->db->delete($this->_cate,array('ID' => $id));
+	}
+
+	public function deleteType($id)
+	{
+		$this->db->delete($this->_type,array('ID' => $id));
+	}
 
 }
 

@@ -5,7 +5,7 @@
             <a class="breadcrumb-item" href="<?php echo base_url('') ?>"><i class="fa fa-home" aria-hidden="true"></i></a>
             <a class="breadcrumb-item" href="<?php echo base_url('chuyenmuc-'.$datacate['ID']) ?>"><?php echo $datacate['Name'] ?></a>
             <a class="breadcrumb-item" href="<?php echo base_url('theloai-'.$datatype['ID']) ?>"><?php echo $datatype['Name'] ?></a>
-            <span class="breadcrumb-item active">This post</span>
+            <span class="breadcrumb-item active"><?php echo $datapost['Title'] ?></span>
         </nav>
         <!-- endBreadCrumb -->
         <p>
@@ -14,15 +14,18 @@
         <div class="custom-panel">
             <div class="custom-panel-heading">
                 <h2 style="font-size: 16px!important">
-                    <?php echo $datapost['Username'] ?> <i class="fa fa-user" aria-hidden="true"></i> / <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date('d/m/Y',$datapost['Date_create']) ?>
+                    <?php echo $datapost['Username'] ?> <i class="fa fa-user" aria-hidden="true"></i>
+                    <?php echo $datapost['View'] ?>
                     <span class="float-right" onclick="log()">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date('d/m/Y',$datapost['Date_create']) ?>
                         <i class="fa fa-flag-o" aria-hidden="true"></i>
                     </span>
                 </h2>
             </div>
-            <p class="p-2">
+            <div class="p-2">
                 <?php echo $datapost['Content'] ?>
-                <hr>
+            </div>
+            <div class="px-2 py-1 border border-bottom-0">
                 <div class="btn-group ml-2" role="group" aria-label="share with">
                     <a href="#" class="btn btn-info btn-sm" onclick="log()">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -47,16 +50,18 @@
                     <?php echo $tag.',' ?>
                     <?php endforeach; ?>
                 </span>
-            </p>
+            </div>
         </div>
         <!-- Comment -->
         <div class="custom-panel rounded-bottom">
-            <div class="custom-panel-heading">
+            <div class="custom-panel-heading" id="comment">
                 <h3 style="font-size: 16px">Bình luận</h2>
             </div>
             <?php if(!is_null($this->session->userdata('Username'))) : ?>
-                <form method="POST" class="p-2">     
-                <?php echo validation_errors('<div class="alert alert-danger" role="alert">','</div>')?>
+                <form method="POST" class="p-2">
+                <?php 
+                echo (is_null($this->session->flashdata('alert'))) ? '' : '<div class="alert alert-success">'.$this->session->flashdata('alert').'</div>';
+                echo validation_errors('<div class="alert alert-danger">','</div>')?>
                     <div class="form-group">
                         <label for="commentform" class="form-text text-muted">Nhập bình luận</label>
                         <textarea class="form-control" id="commentform" rows="3" name="Content"></textarea>

@@ -21,6 +21,9 @@
     <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.2.1.js') ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script type="text/javascript">
+            setTimeout(function(){
+                $(".alert").alert('close');
+            },10000);
             $("#selectcategories").change(function(){
                 var idchuyenmuc = $(this).val();
                 $.get("../ajax/theloai/"+idchuyenmuc).done(function(data){

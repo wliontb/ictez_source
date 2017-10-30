@@ -3,6 +3,7 @@
     <a class="breadcrumb-item" href="<?php echo base_url('quanly') ?>">Quản lý</a>
     <span class="breadcrumb-item active">Danh sách bài viết</span>
 </nav>
+<?php echo (is_null($this->session->flashdata('alert'))) ? '' : '<div class="alert alert-warning">'.$this->session->flashdata('alert').'</div>'; ?>
 <div class="row mb-3">
 	<div class="col-md-12">
 		<table class="table">

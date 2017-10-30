@@ -8,7 +8,7 @@
         <div class="widget">
             <h2 class="widget-title float-left">
                 <p><i class="fa fa-link" aria-hidden="true"></i> Bài viết : </p>
-                <small class="text-muted">Bài viết mới nhất : <a href="<?php echo base_url('baiviet-'.$last_post[0]['ID']) ?>"><?php echo $last_post[0]['Title'] ?></a></small>
+                <small class="text-muted">Bài viết mới nhất : <a href="<?php echo (empty($last_post)) ? '#' : base_url('baiviet-'.$last_post[0]['ID']); ?>"><?php echo (empty($last_post)) ? 'Chưa có' : $last_post[0]['Title']; ?></a></small>
             </h2>
             <div class="float-right">
                 <h3 class="text-warning font-weight-bold"><?php echo $count_posts; ?></h3>
@@ -19,7 +19,7 @@
         <div class="widget">
             <h2 class="widget-title float-left">
                 <p><i class="fa fa-link" aria-hidden="true"></i> Thành viên :</p>
-                <small class="text-muted">Thành viên mới nhất : <a href="<?php echo base_url('thanhvien-'.$last_user[0]['ID']) ?>"><?php echo $last_user[0]['Username'] ?></a></small>
+                <small class="text-muted">Thành viên mới nhất : <a href="<?php echo (empty($last_user)) ? '#' :  base_url('thanhvien-'.$last_user[0]['ID']) ?>"><?php echo (empty($last_user)) ? '#' :  $last_user[0]['Username'] ?></a></small>
             </h2>
             <div class="float-right">
                 <h3 class="text-warning font-weight-bold"><?php echo $count_users; ?></h3>
@@ -35,7 +35,7 @@
                 <small class="text-muted"><i class="fa fa-link" aria-hidden="true"></i> Bình luận</small>
             </div>
             <div class="widget-footer rouded-bottom">
-                <i class="fa fa-line-chart" aria-hidden="true"></i> <a href="#" class="text-dark">Quản lý</a>
+                <i class="fa fa-line-chart" aria-hidden="true"></i> <a href="<?php echo base_url('quanly/binhluan') ?>" class="text-dark">Quản lý</a>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 <small class="text-muted"><i class="fa fa-link" aria-hidden="true"></i> Thể loại</small>
             </div>
             <div class="widget-footer rouded-bottom">
-                <i class="fa fa-line-chart" aria-hidden="true"></i> <a href="#" class="text-dark">Quản lý</a>
+                <i class="fa fa-line-chart" aria-hidden="true"></i> <a href="<?php echo base_url('quanly/theloai') ?>" class="text-dark">Quản lý</a>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
                 <small class="text-muted"><i class="fa fa-link" aria-hidden="true"></i> Chuyên mục</small>
             </div>
             <div class="widget-footer rouded-bottom">
-                <i class="fa fa-line-chart" aria-hidden="true"></i> <a href="#" class="text-dark">Quản lý</a>
+                <i class="fa fa-line-chart" aria-hidden="true"></i> <a href="<?php echo base_url('quanly/chuyenmuc') ?>" class="text-dark">Quản lý</a>
             </div>
         </div>
     </div>

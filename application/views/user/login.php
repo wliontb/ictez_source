@@ -57,7 +57,7 @@
                 </div>                      
             </form>
             <hr>
-            <p class="text-center">Chưa có tài khoản ? <a href="#" class="font-weight-bold">Đăng ký</a> ngay !</p>
+            <p class="text-center">Chưa có tài khoản ? <a href="<?php echo base_url('dangky') ?>" class="font-weight-bold">Đăng ký</a> ngay !</p>
         </div>
     </div>
 </div>

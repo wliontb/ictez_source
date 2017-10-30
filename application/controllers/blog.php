@@ -18,7 +18,7 @@ class Blog extends CI_Controller
 
 		$config = array(
 				'base_url' => base_url('index.php'), 
-				'total_rows' => $this->PostModel->countPosts('Posts.Public = 1'),
+				'total_rows' => $this->PostModel->countPosts('posts.Public = 1'),
 				'per_page' => 6,
 				'full_tag_open' => '<nav aria-label="Page navigation" class="pt-2" style="border-top: 1px dashed #ccc;"><ul class="pagination justify-content-center">',
 				'full_tag_close' => '</ul></nav>',
@@ -48,7 +48,8 @@ class Blog extends CI_Controller
 			'title' => 'Trang chủ',
 			'dataposts' => $this->PostModel->getPosts($config['per_page'], $this->uri->segment('1'), 'Posts.Public = 1'),
 			'datacates' => $this->PostModel->getCates(),
-			'overlay' => $this->PostModel->getPosts('','', 'Posts.Public = 1 AND Posts.Special = 1'),
+			'overlay' => $this->PostModel->getPosts('','','posts.Public = 1 AND posts.Special = 1'),
+			'topviews' => $this->PostModel->getPosts('5','0','View > 0'),
 			);
 
 		
@@ -57,6 +58,7 @@ class Blog extends CI_Controller
 
 	public function displayPost($idpost)
 	{
+		$this->session->set_userdata('viewpost_'.$idpost,'done');
 		$datapost = $this->PostModel->getPost($idpost);
 		$this->_data = array(
 				'title' => $datapost['Title'],
@@ -67,6 +69,12 @@ class Blog extends CI_Controller
 				'datacates' => $this->PostModel->getCates(),
 				'datacomment' => $this->PostModel->getComments(5,0,$where = 'comments.ID_post='.$idpost),
 			);
+
+		//count views
+
+		if(is_null($this->session->userdata('viewpost_'.$idpost))){
+			$this->PostModel->updateView($idpost);
+		}
 
 		$this->form_validation->set_rules('Content','Nội dung bình luận','required|max_length[1000]|min_length[4]');
 
@@ -79,6 +87,8 @@ class Blog extends CI_Controller
 				);
 
 			$this->PostModel->createComment($data);
+			$this->session->set_flashdata('alert','Gửi bình luận thành công');
+			redirect(base_url('baiviet-'.$idpost.'#comment'));
 		}
 
 		$this->load->view('main/container',$this->_data);

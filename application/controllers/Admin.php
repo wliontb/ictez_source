@@ -173,6 +173,184 @@ class Admin extends CI_Controller
 			'datacates' => $this->PostModel->getCates(),
 		);
 
+		$this->form_validation->set_rules('Name','Tên chuyên mục','required|max_length[100]|min_length[5]');
+		$this->form_validation->set_rules('Intro','Mô tả','required|max_length[300]|min_length[4]');
+		$this->form_validation->set_rules('Manager','Quản lý','max_length[100]');
+
+		if($this->form_validation->run()){
+			$data = array(
+				'Name' => $this->input->post('Name'), 
+				'Intro' => $this->input->post('Intro'),
+				'Manager' => $this->input->post('Manager'),
+				'Date_create' => time(),
+			);
+
+			$this->PostModel->createCate($data);
+			$this->session->set_flashdata('alert','Tạo thành công chuyên mục '.$data['Name']);
+			redirect(base_url('quanly/chuyenmuc'));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function editCate($id)
+	{
+		$this->_data = array(
+			'title' => $this->PostModel->getCate($id)['Name'],
+			'view' => 'admin/editcate',
+			'datacate' => $this->PostModel->getCate($id),
+			'datatypes' => $this->PostModel->getTypes(10,0,$where = 'ID_cate='.$id),
+			'counttype' => $this->PostModel->countTypes($where = 'ID_cate='.$id), 
+			'countmanager' => count(explode(',',$this->PostModel->getCate($id)['Manager'])),
+			'idmanager' => explode(',',$this->PostModel->getCate($id)['Manager']),
+		);
+
+		$this->form_validation->set_rules('Name','Tên chuyên mục','required|max_length[100]|min_length[5]');
+		$this->form_validation->set_rules('Intro','Mô tả','required|max_length[300]|min_length[4]');
+		$this->form_validation->set_rules('Manager','Quản lý','max_length[100]');
+
+		if($this->form_validation->run()){
+			$data = array(
+				'Name' => $this->input->post('Name'), 
+				'Intro' => $this->input->post('Intro'),
+				'Manager' => $this->input->post('Manager'),
+				'Date_modify' => time(),
+			);
+
+			$this->PostModel->putCate($id,$data);
+			$this->session->set_flashdata('alert','Đã cập nhật chuyên mục '.$data['Name']);
+			redirect(base_url('quanly/chuyenmuc-'.$id));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function typesManager()
+	{
+		$this->_data = array(
+			'title' => 'Quản lý thể loại',
+			'view' => 'admin/typesmanager',
+			'datatypes' => $this->PostModel->getTypes(6,0),
+			'datacates' => $this->PostModel->getCates(),
+		);
+
+		$this->form_validation->set_rules('Name','Tên thể loại','required|max_length[100]|min_length[5]');
+		$this->form_validation->set_rules('Intro','Mô tả','required|max_length[300]|min_length[4]');
+		$this->form_validation->set_rules('Manager','Quản lý','max_length[100]');
+		$this->form_validation->set_rules('ID_cate','Chuyên mục','required');
+
+		if($this->form_validation->run()){
+			$data = array(
+				'Name' => $this->input->post('Name'), 
+				'Intro' => $this->input->post('Intro'),
+				'Manager' => $this->input->post('Manager'),
+				'ID_cate' => $this->input->post('ID_cate'),
+				'Date_create' => time(),
+			);
+
+			$this->PostModel->createType($data);
+			$this->session->set_flashdata('alert','Đã thêm thể loại '.$data['Name']);
+			redirect(base_url('quanly/theloai'));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function editType($id)
+	{
+		$this->_data = array(
+			'title' => 'Sửa '.$this->PostModel->getType($id)['Name'],
+			'view' => 'admin/edittype',
+			'datatype' => $this->PostModel->getType($id),
+			'dataposts' => $this->PostModel->getPosts(10,0,$where = 'ID_type='.$id),
+			'countpost' => $this->PostModel->countPosts($where = 'ID_type='.$id), 
+			'countmanager' => count(explode(',',$this->PostModel->getType($id)['Manager'])),
+			'idmanager' => explode(',',$this->PostModel->getType($id)['Manager']),
+			'datacates' => $this->PostModel->getCates(),
+		);
+
+		$this->form_validation->set_rules('Name','Tên thể loại','required|max_length[100]|min_length[5]');
+		$this->form_validation->set_rules('Intro','Mô tả','required|max_length[300]|min_length[4]');
+		$this->form_validation->set_rules('Manager','Quản lý','max_length[100]');
+		$this->form_validation->set_rules('ID_cate','Chuyên mục','required');
+
+		if($this->form_validation->run()){
+			$data = array(
+				'Name' => $this->input->post('Name'), 
+				'Intro' => $this->input->post('Intro'),
+				'Manager' => $this->input->post('Manager'),
+				'ID_cate' => $this->input->post('ID_cate'),
+				'Date_create' => time(),
+			);
+
+			$this->PostModel->putType($id,$data);
+			$this->session->set_flashdata('alert','Đã cập nhật thể loại '.$data['Name']);
+			redirect(base_url('quanly/theloai-'.$id));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function deletePost($id)
+	{
+		$post = $this->PostModel->getPost($id);
+
+		$this->_data = array(
+			'title' => 'Xóa bài viết '.$post['Title'],
+			'view' => 'admin/deletepost',
+		);
+
+		$this->form_validation->set_rules('confirm','confirm','required');
+
+		if($this->form_validation->run()){
+			$this->PostModel->deletePost($id);
+
+			$this->session->set_flashdata('alert','Bạn đã xóa thành công bài viết '.$post['Title']);
+			redirect(base_url('quanly/danhsachbaiviet'));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function deleteType($id)
+	{
+		$type = $this->PostModel->getType($id);
+
+		$this->_data = array(
+			'title' => 'Xóa thể loại '.$type['Name'],
+			'view' => 'admin/deletetype',
+		);
+
+		$this->form_validation->set_rules('confirm','confirm','required');
+
+		if($this->form_validation->run()){
+			$this->PostModel->deleteType($id);
+
+			$this->session->set_flashdata('alert','Bạn đã xóa thành công thể loại '.$type['Name']);
+			redirect(base_url('quanly/theloai'));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function deleteCate($id)
+	{
+		$cate = $this->PostModel->getCate($id);
+
+		$this->_data = array(
+			'title' => 'Xóa chuyên mục '.$cate['Name'],
+			'view' => 'admin/deletecate',
+		);
+
+		$this->form_validation->set_rules('confirm','confirm','required');
+
+		if($this->form_validation->run()){
+			$this->PostModel->deleteCate($id);
+
+			$this->session->set_flashdata('alert','Bạn đã xóa thành công chuyên mục '.$cate['Name']);
+			redirect(base_url('quanly/chuyenmuc'));
+		}
+
 		$this->load->view('main/admin',$this->_data);
 	}
 }

@@ -9,12 +9,12 @@
             <div class="custom-panel-heading">
                 <h2>Thêm bài viết mới</h2>
             </div>
-            <?php echo validation_errors('<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>','</div>')?>
             <div class="form-group">
                 <label for="selectcategories">Chọn chuyên mục</label>
+                <?php echo form_error('Categories','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>','</div>') ?>
                 <select class="form-control" id="selectcategories" name="Categories">
                     <?php 
                         foreach($datacates as $cm){
@@ -25,6 +25,10 @@
             </div>
             <div class="form-group">
                 <label for="selecttypes">Chọn thể loại</label>
+                <?php echo form_error('Types','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>','</div>') ?>
                 <select class="form-control" id="selecttypes" name="Types">
                     <?php 
                         foreach($datatypes as $tl){
@@ -35,18 +39,34 @@
             </div>
             <div class="form-group">
                 <label>Tiêu đề bài viết</label>
-                <input type="text" class="form-control" name="Title" value="">
+                <?php echo form_error('Title','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>','</div>') ?>
+                <input type="text" class="form-control" name="Title" value="<?php echo set_value('Title') ?>">
             </div>
             <div class="form-group">
                 <label>Mô tả bài viết</label>
-                <textarea class="form-control" name="Des"></textarea>
+                <?php echo form_error('Des','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>','</div>') ?>
+                <textarea class="form-control" name="Des"><?php echo set_value('Des') ?></textarea>
             </div>
             <div class="form-group">
                 <label>Nội dung bài viết</label>
-                <textarea class="form-control" name="Content" id="ckeditor"></textarea>
+                <?php echo form_error('Content','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>','</div>') ?>
+                <textarea class="form-control" name="Content" id="ckeditor"><?php echo set_value('Content') ?></textarea>
             </div>
             <div class="form-group">
                 <label>Ảnh mô tả của bài</label>
+                <?php echo form_error('Thumbnail','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>','</div>') ?>
                 <input type="text" class="form-control" placeholder="http://" name="Thumbnail" id="thumbnail" value="">
                 <div id="loadfile"></div>
                 <input type="file" id="file" name="imageupload" class="form-control-file">

@@ -74,7 +74,7 @@
                 </div>
             </form>
             <hr>
-            <p class="text-center">Đã có tài khoản ? <a href="#" class="font-weight-bold">Đăng nhập</a> !</p>
+            <p class="text-center">Đã có tài khoản ? <a href="<?php echo base_url('dangnhap') ?>" class="font-weight-bold">Đăng nhập</a> !</p>
         </div>
     </div>
 </div>

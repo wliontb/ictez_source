@@ -1,12 +1,13 @@
-<div class="row home-offset">
-	<div class="medium-12 columns">
+<div class="row">
+	<div class="col-md-12">
 		<div class="text-center">
-		<p>Bạn có chắc chắn muốn đăng xuất ?</p>
+		<p><b>Bạn có chắc chắn muốn đăng xuất ?</b></p>
 		<p>
-			<form method="post" action="">
-				<input type="submit" name="confirm" class="button warning">
+			<form method="POST">
+				<input type="submit" name="confirm" class="btn btn-warning" value="Thoát">
 			</form>
 		</p>
+		<p><img src="https://i.imgur.com/2aT00w2.jpg"/></p>
 		</div>
 	</div>
 </div>

@@ -1,9 +1,9 @@
-
 <div class="row">
     <div class="col-md-8">
         <div class="custom-panel-heading">
             <h2>Bài nổi bật</h2>
         </div>
+        <?php if(!empty($overlay)) : ?>
         <div id="carouselExampleCaptions" class="carousel slide mb-1" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
@@ -12,7 +12,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo base_url('public/img/slide1.jpg') ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
+                    <img class="d-block w-100" src="<?php echo $overlay[0]['Thumbnail'] ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h3>
                             <a href="<?php echo base_url('baiviet-'.$overlay[0]['ID']) ?>"><?php echo $overlay[0]['Title'] ?></a>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="<?php echo base_url('public/img/slide2.jpg') ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
+                    <img class="d-block w-100" src="<?php echo $overlay[1]['Thumbnail'] ?>" alt="<?php echo $overlay[1]['Title'] ?>" height="200px"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h3>
                             <a href="<?php echo base_url('baiviet-'.$overlay[1]['ID']) ?>"><?php echo $overlay[1]['Title'] ?></a>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo base_url('public/img/slide2.jpg') ?>" alt="<?php echo $overlay[0]['Title'] ?>" height="200px"/>
+                    <img class="d-block w-100" src="<?php echo $overlay[2]['Thumbnail'] ?>" alt="<?php echo $overlay[2]['Title'] ?>" height="200px"/>
                     <div class="carousel-caption d-none d-md-block">
                         <h3>
                             <a href="<?php echo base_url('baiviet-'.$overlay[2]['ID']) ?>"><?php echo $overlay[2]['Title'] ?></a>
@@ -48,15 +48,17 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <?php endif; ?>
 
         <div class="border border-dark p-2">
-            <p>ads</p>
+            <p>quảng cáo</p>
         </div>
 
         <div class="custom-panel rounded-bottom" id="newtopic">
             <div class="custom-panel-heading">
                 <h2>Bài viết mới</h2>
             </div>
+            <?php echo (empty($dataposts)) ? 'Chưa có bài viết' : ''; ?>
             <?php foreach($dataposts as $bv) : ?>
             <div class="post row no-gutters">
                 <div class="col-sm-3 p-1">
@@ -116,21 +118,11 @@
                 <div class="custom-panel-heading">
                     <h2>Xem nhiều</h2>
                 </div>
+                <?php foreach($topviews as $tv) : ?>
                 <div class="post p-1">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, nesciunt iusto sunt quisquam!</p>
+                    <p><a href="<?php echo base_url('baiviet-'.$tv['ID']) ?>"><?php echo $tv['Title'] ?></a></p>
                 </div>
-                <div class="post p-1">
-                    <p>Officiis a reprehenderit earum corporis eligendi nobis blanditiis dolor porro architecto illum, culpa.</p>
-                </div>
-                <div class="post p-1">
-                    <p>Sint deleniti tenetur cupiditate voluptate voluptas amet, officiis, unde et consequuntur vero explicabo.</p>
-                </div>
-                <div class="post p-1">
-                    <p>Nobis voluptatum animi voluptates sunt, debitis nam ut, dolor ab. Pariatur, reiciendis quidem.</p>
-                </div>
-                <div class="post p-1">
-                    <p>Aspernatur at harum itaque labore, corrupti beatae fuga, ullam nihil reprehenderit officiis laudantium.</p>
-                </div>
+                <?php endforeach; ?>
             </div>
         </aside>
     </div>

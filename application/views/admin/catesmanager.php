@@ -10,17 +10,21 @@
 				<h2>Thêm chuyên mục mới</h2>
 			</div>
 			<form method="POST" class="p-1">
+				<?php 
+				echo (is_null($this->session->flashdata('alert'))) ? '' : '<div class="alert alert-success">'.$this->session->flashdata('alert').'</div>';
+				echo validation_errors('<div class="alert alert-danger">','</div>'); 
+				?>
 				<div class="form-group">
 					<label>Tên chuyên mục</label>
-					<input type="text" name="" class="form-control">
+					<input type="text" name="Name" class="form-control">
 				</div>
 				<div class="form-group">
 					<label>Giới thiệu chuyên mục</label>
-					<textarea name="" class="form-control" row="2"></textarea>
+					<textarea name="Intro" class="form-control" row="2"></textarea>
 				</div>
 				<div class="form-group">
 					<label>Người quản lý (ID)</label>
-					<input type="text" name="" class="form-control" data-toggle="tooltip" data-placement="left" title="Mỗi ID cách nhau bởi dấu phẩy" id="fuck" placeholder="1,2,...">
+					<input type="text" name="Manager" class="form-control" data-toggle="tooltip" data-placement="left" title="Mỗi ID cách nhau bởi dấu phẩy" id="fuck" placeholder="1,2,..">
 				</div>
 				<button type="submit" class="btn btn-success">Thêm</button>
 			</form>
@@ -47,7 +51,7 @@
 			      	<td><?php echo $cm['Manager'] ?></td>
 			      	<td><?php echo date('d/m/Y',$cm['Date_create']) ?></td>
 			      	<td>
-			      		<a href="<?php echo base_url('quanly/chuyenmuc-'.$cm['ID']) ?>" class="btn btn-warning">Sửa</a>
+			      		<a href="<?php echo base_url('quanly/chuyenmuc-'.$cm['ID']) ?>" class="btn btn-info">Quản lý</a>
 			      		<a href="#" class="btn btn-danger">Xóa</a>
 			      	</td>
 		    	</tr>
