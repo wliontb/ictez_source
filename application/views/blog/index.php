@@ -91,7 +91,7 @@
                     <?php foreach ($datacates as $cm) : ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="<?php echo base_url('chuyenmuc-'.$cm['ID']) ?>"><?php echo $cm['Name'] ?></a>
-                        <span class="badge badge-secondary">0</span>
+                        <span class="badge badge-secondary"><?php echo $this->PostModel->countTypes($where = 'ID_cate='.$cm['ID']) ?></span>
                     </li>
                     <?php endforeach; ?>
                 </ul>
@@ -119,7 +119,7 @@
                     <h2>Xem nhiều</h2>
                 </div>
                 <?php foreach($topviews as $tv) : ?>
-                <div class="post p-1">
+                <div class="post p-2">
                     <p><a href="<?php echo base_url('baiviet-'.$tv['ID']) ?>"><?php echo $tv['Title'] ?></a></p>
                 </div>
                 <?php endforeach; ?>

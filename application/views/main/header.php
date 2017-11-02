@@ -45,8 +45,8 @@
                             '); ?>
                     </li>
                 </ul>
-                <form class="form-inline ml-md-auto">
-                    <input class="form-control mr-sm-2" type="text" placeholder="từ khóa" aria-label="Search">
+                <form method="GET" action="timkiem" class="form-inline ml-md-auto">
+                    <input class="form-control mr-sm-2" type="text" name="keywords" placeholder="từ khóa" aria-label="Search">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>

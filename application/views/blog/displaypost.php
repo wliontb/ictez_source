@@ -14,7 +14,7 @@
         <div class="custom-panel">
             <div class="custom-panel-heading">
                 <h2 style="font-size: 16px!important">
-                    <?php echo $datapost['Username'] ?> <i class="fa fa-user" aria-hidden="true"></i>
+                    <?php echo $datapost['Username'] ?> <i class="fa fa-eye" aria-hidden="true"></i>
                     <?php echo $datapost['View'] ?>
                     <span class="float-right" onclick="log()">
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date('d/m/Y',$datapost['Date_create']) ?>
@@ -92,7 +92,7 @@
                 <?php foreach($datacates as $cm) : ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="<?php echo base_url('chuyenmuc-'.$cm['ID']) ?>"><?php echo $cm['Name'] ?></a>
-                        <span class="badge badge-secondary">2</span>
+                        <span class="badge badge-secondary"><?php echo $this->PostModel->countTypes($where = 'ID_cate='.$cm['ID']) ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -117,23 +117,13 @@
         </div>
         <div class="custom-panel rounded-bottom">
             <div class="custom-panel-heading">
-                <h2>Cùng chuyên mục</h2>
+                <h2>Cùng thể loại</h2>
             </div>
-            <div class="post p-1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, nesciunt iusto sunt quisquam!</p>
+            <?php foreach($this->PostModel->getPosts(5,0,$where = 'ID_type='.$datapost['ID_type']) as $bv) : ?>
+            <div class="post p-2">
+                <p><a href="<?php echo base_url('baiviet-'.$bv['ID']) ?>"><?php echo $bv['Title'] ?></a></p>
             </div>
-            <div class="post p-1">
-                <p>Officiis a reprehenderit earum corporis eligendi nobis blanditiis dolor porro architecto illum, culpa.</p>
-            </div>
-            <div class="post p-1">
-                <p>Sint deleniti tenetur cupiditate voluptate voluptas amet, officiis, unde et consequuntur vero explicabo.</p>
-            </div>
-            <div class="post p-1">
-                <p>Nobis voluptatum animi voluptates sunt, debitis nam ut, dolor ab. Pariatur, reiciendis quidem.</p>
-            </div>
-            <div class="post p-1">
-                <p>Aspernatur at harum itaque labore, corrupti beatae fuga, ullam nihil reprehenderit officiis laudantium.</p>
-            </div>
+            <?php endforeach; ?>
         </div>
     </aside>
 </div>

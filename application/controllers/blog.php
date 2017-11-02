@@ -58,7 +58,7 @@ class Blog extends CI_Controller
 
 	public function displayPost($idpost)
 	{
-		$this->session->set_userdata('viewpost_'.$idpost,'done');
+		$this->load->helper('cookie');
 		$datapost = $this->PostModel->getPost($idpost);
 		$this->_data = array(
 				'title' => $datapost['Title'],
@@ -72,8 +72,9 @@ class Blog extends CI_Controller
 
 		//count views
 
-		if(is_null($this->session->userdata('viewpost_'.$idpost))){
+		if(is_null(get_cookie('viewpost_'.$idpost))){
 			$this->PostModel->updateView($idpost);
+			set_cookie('viewpost_'.$idpost,'done',3600);
 		}
 
 		$this->form_validation->set_rules('Content','Nội dung bình luận','required|max_length[1000]|min_length[4]');
@@ -117,6 +118,16 @@ class Blog extends CI_Controller
 			'datatype' => $thistype,
 			'dataposts' => $this->PostModel->getPosts('','',$where = 'ID_type='.$thistype['ID']),
 			'datacates' => $this->PostModel->getCates(),
+		);
+
+		$this->load->view('main/container',$this->_data);
+	}
+
+	public function search()
+	{
+		$this->_data = array(
+			'title' => 'Tìm kiếm ',
+			'view' => 'blog/search',
 		);
 
 		$this->load->view('main/container',$this->_data);

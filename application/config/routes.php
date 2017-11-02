@@ -72,3 +72,4 @@ $route['theloai-(:num)'] = 'blog/displaytype/$1';
 $route['quanly/theloai'] = 'admin/typesmanager';
 $route['quanly/theloai-(:num)'] = 'admin/edittype/$1';
 $route['quanly/xoabaiviet-(:num)'] = 'admin/deletepost/$1';
+$route['timkiem'] = 'blog/search';

@@ -12,6 +12,7 @@ class PostModel extends CI_Model
 	protected $_user = 'users';
 	protected $_comment = 'comments';
 
+	//get,gets data
 	public function getCate($idCate)
 	{
 		$this->db->select('*');
@@ -30,16 +31,6 @@ class PostModel extends CI_Model
 
 		$result = $this->db->get();
 		return $result->result_array();
-	}
-
-	public function countCates($where = '')
-	{
-		if (empty($where)) {
-			return $this->db->count_all($this->_cate);
-		} else {
-			$this->db->where($where);
-			return $this->db->get($this->_cate)->num_rows();
-		}
 	}
 
 	public function getType($idType)
@@ -65,16 +56,6 @@ class PostModel extends CI_Model
 		return $result->result_array();
 	}
 
-	public function countTypes($where = '')
-	{
-		if (empty($where)) {
-			return $this->db->count_all($this->_type);
-		} else {
-			$this->db->where($where);
-			return $this->db->get($this->_type)->num_rows();
-		}
-	}
-
 	public function getPost($idPost)
 	{
 		$this->db->select('*');
@@ -84,31 +65,6 @@ class PostModel extends CI_Model
 		$result = $this->db->get();
 
 		return $result->row_array();
-	}
-
-	public function updateView($idpost)
-	{
-		$this->db->set('View','View+1',FALSE);
-		$this->db->where('ID',$idpost);
-		$this->db->update($this->_post);
-	}
-
-	public function putPost($idpost,$data)
-	{
-		$this->db->where('ID', $idpost);
-		$this->db->update($this->_post, $data); 
-	}
-
-	public function putCate($idcate,$data)
-	{
-		$this->db->where('ID', $idcate);
-		$this->db->update($this->_cate, $data);
-	}
-
-	public function putType($idtype,$data)
-	{
-		$this->db->where('ID', $idtype);
-		$this->db->update($this->_type, $data);
 	}
 
 	public function getComments($limit, $offset, $where = '')
@@ -139,6 +95,28 @@ class PostModel extends CI_Model
 		return $result->result_array();
 	}
 
+
+	//count data
+	public function countCates($where = '')
+	{
+		if (empty($where)) {
+			return $this->db->count_all($this->_cate);
+		} else {
+			$this->db->where($where);
+			return $this->db->get($this->_cate)->num_rows();
+		}
+	}
+
+	public function countTypes($where = '')
+	{
+		if (empty($where)) {
+			return $this->db->count_all($this->_type);
+		} else {
+			$this->db->where($where);
+			return $this->db->get($this->_type)->num_rows();
+		}
+	}
+
 	public function countPosts($where = '')
 	{
 		if (empty($where)) {
@@ -147,8 +125,19 @@ class PostModel extends CI_Model
 			$this->db->where($where);
 			return $this->db->get($this->_post)->num_rows();
 		}
+	}	
+
+	public function countComments($where = '')
+	{
+		if (empty($where)) {
+			return $this->db->count_all($this->_comment);
+		} else {
+			$this->db->where($where);
+			return $this->db->get($this->_comment)->num_rows();
+		}
 	}
 
+	//create data
 	public function createPost($data = array())
 	{
 		$this->db->insert($this->_post,$data);
@@ -171,16 +160,33 @@ class PostModel extends CI_Model
 		$this->db->insert($this->_type,$data);
 	}
 
-	public function countComments($where = '')
+	//update[put] data
+	public function updateView($idpost)
 	{
-		if (empty($where)) {
-			return $this->db->count_all($this->_comment);
-		} else {
-			$this->db->where($where);
-			return $this->db->get($this->_comment)->num_rows();
-		}
+		$this->db->set('View','View+1',FALSE);
+		$this->db->where('ID',$idpost);
+		$this->db->update($this->_post);
 	}
 
+	public function putPost($idpost,$data)
+	{
+		$this->db->where('ID', $idpost);
+		$this->db->update($this->_post, $data); 
+	}
+
+	public function putCate($idcate,$data)
+	{
+		$this->db->where('ID', $idcate);
+		$this->db->update($this->_cate, $data);
+	}
+
+	public function putType($idtype,$data)
+	{
+		$this->db->where('ID', $idtype);
+		$this->db->update($this->_type, $data);
+	}
+
+	//delete data
 	public function deletePost($id)
 	{
 		$this->db->delete($this->_post,array('ID' => $id));
@@ -196,6 +202,15 @@ class PostModel extends CI_Model
 		$this->db->delete($this->_type,array('ID' => $id));
 	}
 
+	//search data
+	public function search($search_text)
+	{
+	  	$this->db->like('Title', $search_text);
+	  	$this->db->or_like('Content', $search_text);
+	  	
+	  	$query = $this->db->get($this->_post);
+	  	return $query->result_array();
+	}
 }
 
  ?>

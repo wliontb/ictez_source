@@ -62,6 +62,17 @@ class Ajax extends CI_Controller
 
 		
 	}
+
+	public function timkiem()
+	{
+		echo 'kết quả tìm kiếm cho'.$this->input->post('keys');
+		$data = $this->PostModel->search($this->input->post('keys'));
+
+		foreach($data as $bv){
+			echo $bv['Title'];
+		}
+
+	}
 }
 
  ?>
