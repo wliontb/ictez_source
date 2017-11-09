@@ -1,3 +1,4 @@
+<?php permissionUser(base_url()); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,7 @@
                     <a class="nav-link" href="#"><i class="fa fa-bell" aria-hidden="true"></i> Thông báo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Cài đặt</a>
+                    <a class="nav-link" href="<?php echo base_url('quanly/caidat') ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Cài đặt</a>
                 </li>
                 <li class="nav-item">
                     <p class="font-italic nav-link text-secondary">Đang phát triển</p>

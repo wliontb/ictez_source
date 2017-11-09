@@ -7,7 +7,7 @@
 				<input type="submit" name="confirm" class="btn btn-warning" value="Thoát">
 			</form>
 		</p>
-		<p><img src="https://i.imgur.com/2aT00w2.jpg"/></p>
+		<p><img src="<?php echo base_url('assets/img/goodbye.jpg') ?>"/></p>
 		</div>
 	</div>
 </div>

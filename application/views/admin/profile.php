@@ -7,16 +7,16 @@
 	<div class="col-md-4">
 		<div class="custom-panel rounded-top">
 			<div class="custom-panel-heading">
-				<h2>Username</h2>
+				<h2><?php echo $this->session->userdata('Username'); ?></h2>
 			</div>
 			<div class="row no-gutters">
 				<div class="col-md-6">
-					<img src="#" alt="avatar"/>
+					<img src="<?php echo $this->session->userdata('Avatar') ?>" alt="ảnh đại diện"/>
 				</div>
 				<div class="col-md-6">
-					<p><b>Họ tên</b> : <?php echo $this->session->userdata('Username'); ?></p>
+					<p><b>Họ tên</b> : <?php echo $this->session->userdata('Fullname'); ?></p>
 					<p><b>Email</b> : <?php echo $this->session->userdata('Email'); ?></p>
-					<p><b>Phone</b> : <?php echo $this->session->userdata('Phone') ?></p>
+					<p><b>SĐT</b> : <?php echo $this->session->userdata('Phone') ?></p>
 					<p><b>Ngày đăng ký</b> : <?php echo date('d/m/Y',$this->session->userdata('Date_create')); ?></p>
 				</div>
 				<div class="col-md-12 p-2">
@@ -74,26 +74,37 @@
 		  	</button>
 		  	Sửa đổi lần cuối <b><?php echo date('d/m/Y',$this->session->userdata('Date_modify')); ?></b>
 		</div>
+		<?php 
+			if(!is_null($this->session->flashdata('alert'))){
+				echo $this->session->flashdata('alert');
+			}
+		 ?>
 		<div class="tab-content border border-secondary mt-2 p-2 rounded-bottom">
 		  	<div class="tab-pane active" id="profile" role="tabpanel">
 		  		<p>
 		  			<h3 style="font-size: 18px" class="text-success font-italic">Cập nhật thông tin của bạn<hr/></h3>
 		  		</p>
-	  			<form action="" class="" method="post">
+	  			<form action="" method="POST">
+	  				<?php echo validation_errors(); ?>
 	  				<div class="form-group">
 	  					<label for="Fullname">Họ tên :</label>
-	  					<input type="text" class="form-control" name="username" value="<?php echo $this->session->userdata('Fullname') ?>" id="Fullname">
+	  					<input type="text" class="form-control" name="fullname" value="<?php echo $this->session->userdata('Fullname') ?>">
 	  				</div>
 	  				<div class="form-group">
 	  					<label for="Address">Địa chỉ :</label>
-	  					<input type="email" class="form-control" value="<?php echo $this->session->userdata('Address') ?>" id="Address">
+	  					<input type="text" name="address" class="form-control" value="<?php echo $this->session->userdata('Address') ?>">
 	  				</div>
 	  				<div class="form-group">
 	  					<label for="intro">Giới thiệu :</label>
 	  					<textarea class="form-control" name="intro" id="intro"><?php echo $this->session->userdata('Intro') ?></textarea>
 	  				</div>
 	  				<div class="form-group">
-	  					<input type="submit" class="btn btn-success" value="Cập nhật">
+	  					<label>Ảnh đại diện :</label>
+	  					<input type="text" name="avatar" id="thumbnail" value="<?php echo $this->session->userdata('Avatar') ?>" class="form-control" placeholder="https://..">
+	  					<input type="file" class="form-control-file" id="file">
+	  				</div>
+	  				<div class="form-group">
+	  					<button type="submit" class="btn btn-info">Cập nhật</button>
 	  				</div>
 	  			</form>
 		  	</div>
@@ -135,7 +146,7 @@
 		  		<p>
 		  			<h3 style="font-size: 18px" class="text-danger font-italic">Thay đổi mật khẩu:<hr/></h3>
 		  		</p>
-	  			<form action="" class="" method="post">
+	  			<form action="<?php echo base_url('changematkhau') ?>" class="" method="post">
 	  				<div class="form-group">
 	  					<label for="currentpassword">Mật khẩu hiện tại :</label>
 	  					<input type="password" class="form-control" name="currentpassword" id="currentpassword">
@@ -166,7 +177,7 @@
 					  	</label>
 	  				</div>
 	  				<div class="form-group">
-	  					<a href="<?php echo base_url('logout') ?>" class="btn btn-danger">Đăng xuất</a>
+	  					<a href="<?php echo base_url('dangxuat') ?>" class="btn btn-danger">Đăng xuất</a>
 	  				</div>
 	  			</form>
 	 	 	</div>

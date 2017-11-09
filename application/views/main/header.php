@@ -4,6 +4,9 @@
     <title><?php echo (isset($title) ? $title : 'Cộng đồng CNTT ICTEZ') ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Nguyễn Viết Tuấn Anh">
+    <meta name="keywords" content="<?php echo empty($datapost['Tags']) ? 'ictez,ictu,nguyentuananh,wlion98,codeigniter,php,reactjs,nodejs' : $datapost['Tags'] ?>">
+    <meta name="description" content="<?php echo empty($datapost['Des']) ? 'Trang web chia sẻ mọi thông tin về lĩnh vực lập trình,công nghệ' : $datapost['Des'] ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.css') ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css') ?>"/>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

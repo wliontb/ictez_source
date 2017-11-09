@@ -102,11 +102,44 @@ class Admin extends CI_Controller
 	public function setProfile()
 	{
 		$this->_data = array(
-			'title' => 'Cá nhân',
+			'title' => 'Cá nhân - tùy chỉnh',
 			'view' => 'admin/profile',
 		);
 
+		$this->form_validation->set_rules('fullname','họ và tên','required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('address','địa chỉ','required|min_length[2]|max_length[100]');
+		$this->form_validation->set_rules('intro','giới thiệu','required|min_length[2]|max_length[300]');
+		$this->form_validation->set_rules('avatar','ảnh đại diện','required|min_length[2]|max_length[70]');
+
+		if($this->form_validation->run()){
+			$this->UserModel->updateUser($this->session->userdata('ID'),$data = array(
+				'Fullname' => $this->input->post('fullname'),
+				'Address' => $this->input->post('address'),
+				'Intro' => $this->input->post('intro'),
+				'Avatar' => $this->input->post('avatar')
+			));
+
+			$this->session->set_flashdata('alert','Cập nhật thông tin thành công');
+			$this->session->set_userdata($this->UserModel->getUser(array('ID' => $this->session->userdata('ID'))));
+
+			redirect(base_url('quanly/canhan'));
+		}
+
 		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function changePassword()
+	{
+		$this->form_validation->set_rules('currentpassword','mật khẩu hiện tại','required');
+		$this->form_validation->set_rules('password','mật khẩu mới','required');
+		$this->form_validation->set_rules('passwordconfirm','nhập lại mật khẩu','required|matches[password]');
+
+		if($this->form_validation->run()){
+			$this->UserModel->updateUser($this->session->userdata('ID'),$data = array('Password' => $this->input->post('passwordconfirm')));
+
+			$this->session->set_flashdata('alert','Cập nhật mật khẩu thành công');
+			redirect(base_url('quanly/canhan'));
+		}
 	}
 
 	public function listPosts()
@@ -349,6 +382,39 @@ class Admin extends CI_Controller
 
 			$this->session->set_flashdata('alert','Bạn đã xóa thành công chuyên mục '.$cate['Name']);
 			redirect(base_url('quanly/chuyenmuc'));
+		}
+
+		$this->load->view('main/admin',$this->_data);
+	}
+
+	public function setting()
+	{
+		$this->_data = array(
+			'title' => 'Cài đặt',
+			'view' => 'admin/setting',
+		);
+		
+		$this->form_validation->set_rules('allow-register','cho phép đăng ký','required');
+		$this->form_validation->set_rules('postsperindex','số bài viết trên trang chủ','required|min_length[1]|max_length[20]');
+		$this->form_validation->set_rules('typespercate','số thể loại trong chuyên mục','required|min_length[1]|max_length[20]');
+		$this->form_validation->set_rules('postspertype','số bài viết trong thể loại','required|min_length[1]|max_length[20]');
+		$this->form_validation->set_rules('ads','quảng cáo','max_length[255]');
+
+		if($this->form_validation->run()){
+			$data = array(
+				'allowreg'  => $this->input->post('allow-register'),
+				'postsperindex' => $this->input->post('postsperindex'),
+				'typespercate' => $this->input->post('typespercate'),
+				'postspertype' => $this->input->post('postspertype'),
+			);
+
+			if(!empty($this->input->post('ads')))
+				$data['ads'] = $this->input->post('ads');
+
+			$this->UserModel->updateSetting($data);
+			$this->session->set_flashdata('alert','Cập nhật cài đặt thành công!');
+
+			redirect(base_url('quanly/caidat'));
 		}
 
 		$this->load->view('main/admin',$this->_data);

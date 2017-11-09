@@ -73,3 +73,5 @@ $route['quanly/theloai'] = 'admin/typesmanager';
 $route['quanly/theloai-(:num)'] = 'admin/edittype/$1';
 $route['quanly/xoabaiviet-(:num)'] = 'admin/deletepost/$1';
 $route['timkiem'] = 'blog/search';
+$route['changematkhau'] = 'admin/changepassword';
+$route['quanly/caidat'] = 'admin/setting';
