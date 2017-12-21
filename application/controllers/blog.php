@@ -8,12 +8,14 @@ class Blog extends CI_Controller
 
 		$this->load->model('PostModel');
 		$this->load->model('UserModel');
+		$this->load->Model('SettingModel');
 
 		$this->load->library('form_validation');
 	}
 
 	public function index()
 	{
+		//var_dump($configs);
 		$this->load->library('pagination');
 
 		$config = array(

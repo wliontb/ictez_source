@@ -389,9 +389,12 @@ class Admin extends CI_Controller
 
 	public function setting()
 	{
+		$this->load->model('SettingModel');
+
 		$this->_data = array(
 			'title' => 'Cài đặt',
 			'view' => 'admin/setting',
+			'sv' => $this->SettingModel->getValues(),
 		);
 		
 		$this->form_validation->set_rules('allow-register','cho phép đăng ký','required');
@@ -402,16 +405,22 @@ class Admin extends CI_Controller
 
 		if($this->form_validation->run()){
 			$data = array(
-				'allowreg'  => $this->input->post('allow-register'),
-				'postsperindex' => $this->input->post('postsperindex'),
-				'typespercate' => $this->input->post('typespercate'),
-				'postspertype' => $this->input->post('postspertype'),
+				'Allow_reg'  => $this->input->post('allow-register'),
+				'Posts_per_home' => $this->input->post('postsperindex'),
+				'Posts_per_cate' => $this->input->post('typespercate'),
+				'Posts_per_type' => $this->input->post('postspertype'),
+				'Meta_tags' => $this->input->post('keywords'),
+				'Title' => $this->input->post('title'),
 			);
 
 			if(!empty($this->input->post('ads')))
-				$data['ads'] = $this->input->post('ads');
+				$data['Ads_link'] = $this->input->post('ads');
 
-			$this->UserModel->updateSetting($data);
+			foreach ($data as $key => $value) {
+				$this->SettingModel->update($key,$value);
+			}
+
+			//$this->SettingModel->update($data);
 			$this->session->set_flashdata('alert','Cập nhật cài đặt thành công!');
 
 			redirect(base_url('quanly/caidat'));
